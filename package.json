@@ -46,7 +46,7 @@
     "dev": "webpack-dev-server",
     "build": "webpack -p",
     "lint": "eslint .",
-    "prePublish": "npm run build"
+    "prepublish": "npm run build"
   },
   "homepage": "https://macacajs.github.io/pageuitest",
   "license": "MIT"
