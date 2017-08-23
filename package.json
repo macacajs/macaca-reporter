@@ -1,0 +1,53 @@
+{
+  "name": "macaca-reporter",
+  "version": "1.0.0",
+  "description": "macaca reporter",
+  "keywords": [
+    "macaca",
+    "reporter"
+  ],
+  "main": "lib/macaca-reporter.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/macacajs/macaca-reporter.git"
+  },
+  "dependencies": {
+    "macaca-utils": "^1.0.0",
+    "microtemplate": "^1.0.2",
+    "mocha": "^2.4.5",
+    "xlogger": "^1.0.6"
+  },
+  "devDependencies": {
+    "antd": "^2.12.6",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-import": "^1.0.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.14.5",
+    "d3-tree": "^1.0.9",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-react": "^7.2.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "json-loader": "^0.5.7",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-syntax-highlighter": "^5.6.3",
+    "should": "^11.1.2",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.3",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "webpack -p",
+    "lint": "eslint .",
+    "prePublish": "npm run build"
+  },
+  "homepage": "https://macacajs.github.io/pageuitest",
+  "license": "MIT"
+}

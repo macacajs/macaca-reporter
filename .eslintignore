@@ -1,0 +1,8 @@
+**/.*
+**/node_modules
+**/sea-modules
+**/spm_modules
+**/dist
+**/_dist
+**/assets
+**/build

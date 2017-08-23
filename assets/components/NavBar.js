@@ -1,0 +1,68 @@
+'use strict';
+
+import React from 'react';
+import ReactDom from 'react-dom';
+import Progress from 'antd/lib/progress';
+
+import 'antd/lib/progress/style/css';
+
+require('./NavBar.less');
+
+export default class NavBar extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const stats = this.props.stats;
+    return (
+      <ul className="head">
+        <li>
+          <img className="page-logo" src="https://macacajs.github.io/macaca-logo/svg/monkey.svg" />
+        </li>
+        <li>
+          <span className="page-title">macaca reporter</span>
+        </li>
+        <li>
+          <h5>suites</h5>
+          <p>{ stats.suites }</p>
+        </li>
+        <li>
+          <h5>tests</h5>
+          <p>{ stats.tests }</p>
+        </li>
+        <li>
+          <h5>passes</h5>
+          <p style={{color: '#a5d86e'}}>{ stats.passes }</p>
+        </li>
+        <li>
+          <h5>failures</h5>
+          <p style={{color: '#df5869'}}>{ stats.failures }</p>
+        </li>
+        <li>
+          <h5>pending</h5>
+          <p style={{color: 'rgb(234, 187, 56)'}}>{ stats.pending }</p>
+        </li>
+        <li>
+          <h5>skipped</h5>
+          <p style={{color: '#898989'}}>{ stats.skipped }</p>
+        </li>
+        <li>
+          <h5>duration</h5>
+          <p>{ (stats.duration / 1000).toFixed(2) }s</p>
+        </li>
+        <li>
+          <div className="head-circle">
+            <Progress
+              type="circle"
+              percent={ stats.passPercent }
+              format={ percent => `${percent}%` }
+              status={ stats.passPercent >= 90 ? 'success' : 'exception' }
+              width={ 50 } />
+          </div>
+        </li>
+      </ul>
+     )
+  }
+}
