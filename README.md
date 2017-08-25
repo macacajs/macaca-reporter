@@ -14,7 +14,7 @@
 [download-image]: https://img.shields.io/npm/dm/macaca-reporter.svg?style=flat-square
 [download-url]: https://npmjs.org/package/macaca-reporter
 
-> macaca reportor
+> macaca-reporter is a reporter used for mocha and other frameworks.
 
 ## Installment
 
@@ -29,9 +29,37 @@ $ npm i macaca-reporter --save-dev
   <img src="http://wx3.sinaimg.cn/large/6d308bd9gy1fivtfos9r5j21kw130af7.jpg" />
 </div>
 
-## Usage with mocha
+## Features
+
+- Supports displaying tree view
+- Supports displaying failed tests
+- Supprtts custom options
+
+## Usage with macaca-cli
+
+``` bash
+$ macaca run --reporter macaca-reporter
+```
+
+- [sample-nodejs](//github.com/macaca-sample/sample-nodejs)
+
+Run with mocha
+
+``` bash
+$ mocha run --reporter macaca-reporter
+```
+
+Run with Macaca [torchjs](//github.com/macacajs/torchjs)
+
+``` bash
+$ torch --renderer --interactive --watch --notify-on-fail --debug test/*.test.js
+```
+
+gif coming soon
 
 ## More usage
+
+[docs](./docs)
 
 ## License
 
