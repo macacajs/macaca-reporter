@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "macaca reporter",
   "keywords": [
     "macaca",
@@ -12,6 +12,8 @@
     "url": "git://github.com/macacajs/macaca-reporter.git"
   },
   "dependencies": {
+    "chalk": "^2.1.0",
+    "json-stringify-safe": "^5.0.1",
     "macaca-utils": "^1.0.0",
     "microtemplate": "^1.0.2",
     "mocha": "^2.4.5",
