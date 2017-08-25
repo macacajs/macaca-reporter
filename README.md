@@ -25,7 +25,7 @@ $ npm i macaca-reporter --save-dev
 ## Sample
 
 <div align="center">
-  <img src="http://wx4.sinaimg.cn/large/6d308bd9gy1fivtfspl2hj21kw130ag6.jpg" />
+  <img src="http://wx4.sinaimg.cn/large/6d308bd9gy1fivuatxep5j21kw13dgs6.jpg" />
   <img src="http://wx3.sinaimg.cn/large/6d308bd9gy1fivtfos9r5j21kw130af7.jpg" />
 </div>
 
