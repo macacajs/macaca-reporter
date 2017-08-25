@@ -74,8 +74,10 @@ export default class Suite extends React.Component {
       text: title
     };
 
+    var selector = `.d3-tree-${this.uid}`;
+
     var d3tree = new D3Tree({
-      selector: `.d3-tree-${this.uid}`,
+      selector: selector,
       data: {
         id: this._guid(),
         data: data,
@@ -83,8 +85,8 @@ export default class Suite extends React.Component {
       },
       imageWidth: 30,
       imageHeight: 100,
-      width: 1200,
-      height: 1100,
+      width: document.querySelector(selector).clientWidth,
+      height: window.innerHeight,
       margin: {
         left: window.innerHeight / 10,
         top: window.innerWidth / 20,
