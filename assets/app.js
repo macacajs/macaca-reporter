@@ -69,14 +69,15 @@ class App extends React.Component {
 }
 
 window._macaca_reportor = {
+
   _render: () => {
-    container = document.getElementById(pkg.name);
     ReactDom.render(<App />, container);
   },
-  _update: (data) => {
-    container = document.getElementById(pkg.name);
+
+  _update: data => {
     container.innerHTML = '';
     container.setAttribute(dataAttr, data);
     ReactDom.render(<App />, container);
   }
+
 };
