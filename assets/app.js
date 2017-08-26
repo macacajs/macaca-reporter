@@ -71,10 +71,12 @@ class App extends React.Component {
 window._macaca_reportor = {
 
   _render: () => {
+    console.log('reporter view render');
     ReactDom.render(<App />, container);
   },
 
   _update: data => {
+    console.log('reporter view update');
     container.innerHTML = '';
     container.setAttribute(dataAttr, data);
     ReactDom.render(<App />, container);
