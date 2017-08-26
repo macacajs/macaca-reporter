@@ -55,8 +55,6 @@ Run with Macaca [torchjs](//github.com/macacajs/torchjs)
 $ torch --renderer --interactive --watch --notify-on-fail --debug test/*.test.js
 ```
 
-gif coming soon
-
 ## More usage
 
 [docs](./docs)
