@@ -1,10 +1,9 @@
 'use strict';
 
 import React from 'react';
-import ReactDom from 'react-dom';
-import Progress from 'antd/lib/progress';
-
-import 'antd/lib/progress/style/css';
+import {
+  Progress
+} from 'antd';
 
 require('./NavBar.less');
 
@@ -63,6 +62,6 @@ export default class NavBar extends React.Component {
           </div>
         </li>
       </ul>
-     )
+    );
   }
 }

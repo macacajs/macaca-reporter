@@ -1,18 +1,18 @@
 import React from 'react';
 import D3Tree from 'd3-tree';
-import Progress from 'antd/lib/progress';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {
   xcode
 } from 'react-syntax-highlighter/dist/styles';
 
-import 'antd/lib/progress/style/css';
-import Table from 'antd/lib/table';
-import 'antd/lib/table/style/css';
-import Icon from 'antd/lib/icon';
-import 'antd/lib/icon/style/css';
+import {
+  Table,
+  Icon,
+  Progress
+} from 'antd';
 
 import _ from '../common/helper';
+
 const {
   remove
 } = _;
@@ -209,6 +209,6 @@ export default class Suite extends React.Component {
           dataSource={ allTest }
         />
       </div>
-    )
+    );
   }
 }

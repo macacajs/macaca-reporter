@@ -3,10 +3,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import Affix from 'antd/lib/affix';
-import 'antd/lib/affix/style/css';
-import Layout from 'antd/lib/layout';
-import 'antd/lib/layout/style/css';
+import {
+  Affix,
+  Layout
+} from 'antd';
 
 const {
   Header,
@@ -16,6 +16,7 @@ const {
 
 import Suite from './components/Suite';
 import NavBar from './components/NavBar';
+import Screen from './components/Screen';
 
 const pkg = require('../package.json');
 
@@ -44,6 +45,7 @@ class App extends React.Component {
 
   render() {
     const stats = this.state.output.stats;
+    const current = this.state.output.current;
     const originSuites = this.state.output && this.state.output.suites;
 
     return (
@@ -54,11 +56,12 @@ class App extends React.Component {
           </Header>
         </Affix>
         <Content>
-        {
-          originSuites.suites && originSuites.suites.map((suite, index) => {
-            return <Suite suite={ suite } key={ index } />
-          })
-        }
+          <Screen current={ current } />
+          {
+            originSuites.suites && originSuites.suites.map((suite, index) => {
+              return <Suite suite={ suite } key={ index } />
+            })
+          }
         </Content>
         <Footer>
           &copy;&nbsp;<a target="_blank" href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }

@@ -48,5 +48,18 @@ module.exports = {
     totalSkipped: 0,
     duration: 0,
     _totalTime: 14523
+  },
+  current: {
+    image: 'https://macacajs.github.io/macaca-logo/svg/monkey.svg',
+    list: [{
+      title: 'info1 title',
+      value: 'info1 content'
+    }, {
+      title: 'info2 title',
+      value: 'info2 content'
+    }, {
+      title: 'info3 title',
+      value: 'info3 content'
+    }]
   }
 };
