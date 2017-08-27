@@ -1,5 +1,5 @@
-git_version = $$(git branch 2>/dev/null | sed -e '/^[^*]/d'-e's/* \(.*\)/\1/')
-npm_bin= $$(npm bin)
+git_version = `git branch 2>/dev/null | sed -e '/^[^*]/d'-e's/* \(.*\)/\1/'`
+npm_bin= `npm bin`
 
 all: test
 install:
@@ -12,8 +12,8 @@ test:
 		--require co-mocha
 travis: install
 	@NODE_ENV=test $(BIN) $(FLAGS) \
-		./node_modules/.bin/istanbul cover \
-		./node_modules/.bin/_mocha \
+		${npm_bin}/istanbul cover \
+		${npm_bin}/_mocha \
 		--report lcovonly \
 		-- -u exports \
 		$(REQUIRED) \
