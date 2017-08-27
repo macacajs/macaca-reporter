@@ -8,6 +8,8 @@ import {
   Layout
 } from 'antd';
 
+import io from 'socket.io-client';
+
 const {
   Header,
   Footer,
@@ -24,13 +26,16 @@ require('./app.less');
 
 let container = document.getElementById(pkg.name);
 const dataAttr = 'data-output';
+const configAttr = 'config-output';
+var data = JSON.parse(decodeURI(container.getAttribute(dataAttr)));
+var config = JSON.parse(decodeURI(container.getAttribute(configAttr)));
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      output: JSON.parse(decodeURI(container.getAttribute(dataAttr)))
+      output: data
     };
   }
 
@@ -86,3 +91,12 @@ window._macaca_reportor = {
   }
 
 };
+
+console.log(config);
+
+if (config.socket) {
+  const socket = io(config.socket.server);
+  socket.on('update reporter', function(data) {
+    window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
+  });
+}
