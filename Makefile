@@ -10,13 +10,4 @@ test:
 		-- \
 		--timeout 10000 \
 		--require co-mocha
-travis: install
-	@NODE_ENV=test $(BIN) $(FLAGS) \
-		${npm_bin}/istanbul cover \
-		${npm_bin}/_mocha \
-		--report lcovonly \
-		-- -u exports \
-		$(REQUIRED) \
-		$(TESTS) \
-		--bail
 .PHONY: test
