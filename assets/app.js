@@ -49,8 +49,13 @@ class App extends React.Component {
   }
 
   render() {
-    const stats = this.state.output.stats;
-    const current = this.state.output.current;
+
+    if (!this.state.output) {
+      return null;
+    }
+
+    const stats = this.state.output && this.state.output.stats;
+    const current = this.state.output && this.state.output.current;
     const originSuites = this.state.output && this.state.output.suites;
 
     return (
