@@ -24,18 +24,17 @@ const pkg = require('../package.json');
 
 require('./app.less');
 
-let container = document.getElementById(pkg.name);
+let container;
 const dataAttr = 'data-output';
 const configAttr = 'config-output';
-var data = JSON.parse(decodeURI(container.getAttribute(dataAttr)));
-var config = JSON.parse(decodeURI(container.getAttribute(configAttr)));
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    container = document.querySelector(`#${pkg.name}`);
     this.state = {
-      output: data
+      output: JSON.parse(decodeURI(container.getAttribute(dataAttr)))
     };
   }
 
@@ -49,10 +48,6 @@ class App extends React.Component {
   }
 
   render() {
-
-    if (!this.state.output) {
-      return null;
-    }
 
     const stats = this.state.output && this.state.output.stats;
     const current = this.state.output && this.state.output.current;
@@ -97,11 +92,17 @@ window._macaca_reportor = {
 
 };
 
-console.log(config);
+container = document.querySelector(`#${pkg.name}`);
 
-if (config && config.socket) {
-  const socket = io(config.socket.server);
-  socket.on('update reporter', function(data) {
-    window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
-  });
+if (container.getAttribute(configAttr)) {
+  var config = JSON.parse(decodeURI(container.getAttribute(configAttr)));
+
+  console.log(config);
+
+  if (config && config.socket) {
+    const socket = io(config.socket.server);
+    socket.on('update reporter', function(data) {
+      window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
+    });
+  }
 }
