@@ -94,7 +94,7 @@ window._macaca_reportor = {
 
 console.log(config);
 
-if (config.socket) {
+if (config && config.socket) {
   const socket = io(config.socket.server);
   socket.on('update reporter', function(data) {
     window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
