@@ -31,20 +31,22 @@ export default class NavBar extends React.Component {
           justify="space-around"
         >
           <Col span={16}>
-            <Card title="Current Screen" bordered={false}>
+            <div className="imagecon">
+              <h1>Current Screen</h1>
               <img src={ current.image } />
-            </Card>
+            </div>
           </Col>
           <Col span={6}>
-            <Card title="Current status" bordered={false}>
-            {
-              current.list.map((item, key) => {
-                return (
-                  <p key={ key }>{ item.title }: { item.value }</p>
-                );
-              })
-            }
-            </Card>
+            <div>
+              <h1>Current status</h1>
+              {
+                current.list.map((item, key) => {
+                  return (
+                    <p key={ key }>{ item.title }: { item.value }</p>
+                  );
+                })
+              }
+            </div>
           </Col>
         </Row>
       </div>
