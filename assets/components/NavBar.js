@@ -18,7 +18,7 @@ export default class NavBar extends React.Component {
     return (
       <ul className="head">
         <li>
-          <img className="page-logo" src="https://macacajs.github.io/macaca-logo/svg/monkey.svg" />
+          <img className="page-logo" src="https://npmcdn.com/macaca-logo@latest/svg/monkey.svg" />
         </li>
         <li>
           <span className="page-title">macaca reporter</span>
