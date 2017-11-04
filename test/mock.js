@@ -2,17 +2,17 @@ module.exports = {
   stats: {
     suites: 0,
     tests: 0,
-    passes: 3,
+    passes: 0,
     pending: 0,
     failures: 0,
     start: new Date(),
-    passPercent: 50,
+    passPercent: 0,
     pendingPercent: 0,
     other: 0,
     hasOther: false,
     skipped: 1,
-    hasSkipped: true,
-    duration: 14523,
+    hasSkipped: false,
+    duration: 0,
     end: new Date()
   },
   suites: {
