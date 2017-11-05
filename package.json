@@ -50,6 +50,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack -p",
+    "watch": "webpack -w",
     "lint": "eslint .",
     "prepublish": "npm run build"
   },
