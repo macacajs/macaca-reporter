@@ -4,8 +4,7 @@ import React from 'react';
 
 import {
   Row,
-  Col,
-  Card
+  Col
 } from 'antd';
 
 require('./Screen.less');

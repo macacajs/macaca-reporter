@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "macaca reporter",
   "keywords": [
     "macaca",
@@ -20,7 +20,7 @@
     "xlogger": "^1.0.6"
   },
   "devDependencies": {
-    "antd": "^2.12.6",
+    "antd": "^2.13.8",
     "babel-core": "^6.17.0",
     "babel-loader": "^7.1.0",
     "babel-plugin-import": "^1.0.1",
