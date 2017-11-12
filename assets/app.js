@@ -104,5 +104,9 @@ if (container.getAttribute(configAttr)) {
     socket.on('update reporter', function(data) {
       window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
     });
+
+    socket.on('disconnect', (data) => {
+      socket.close();
+    });
   }
 }
