@@ -18,7 +18,7 @@
 
 ## Installment
 
-``` bash
+```bash
 $ npm i macaca-reporter --save-dev
 ```
 
@@ -37,7 +37,7 @@ $ npm i macaca-reporter --save-dev
 
 ## Usage with macaca-cli
 
-``` bash
+```bash
 $ macaca run --reporter macaca-reporter
 ```
 
@@ -45,13 +45,13 @@ $ macaca run --reporter macaca-reporter
 
 Run with mocha
 
-``` bash
+```bash
 $ mocha run --reporter macaca-reporter
 ```
 
 Run with Macaca [torchjs](//github.com/macacajs/torchjs)
 
-``` bash
+```bash
 $ torch --renderer --interactive --watch --notify-on-fail --debug test/*.test.js
 ```
 
