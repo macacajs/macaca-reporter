@@ -14,6 +14,8 @@
 [download-image]: https://img.shields.io/npm/dm/macaca-reporter.svg?style=flat-square
 [download-url]: https://npmjs.org/package/macaca-reporter
 
+---
+
 > macaca-reporter is a reporter used for mocha and other frameworks.
 
 ## Installment

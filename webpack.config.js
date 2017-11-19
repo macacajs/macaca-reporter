@@ -8,7 +8,7 @@ const pkg = require('./package');
 module.exports = {
 
   entry: {
-    [pkg.name]: path.resolve(__dirname, './assets/app')
+    [pkg.name]: path.join(__dirname, 'assets', 'app')
   },
 
   output: {

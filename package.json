@@ -53,7 +53,8 @@
     "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules",
     "watch": "webpack -w",
     "lint": "eslint .",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test": "mocha"
   },
   "homepage": "https://macacajs.github.io/pageuitest",
   "license": "MIT"
