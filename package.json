@@ -51,7 +51,6 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules",
-    "watch": "webpack -w",
     "lint": "eslint .",
     "prepublish": "npm run build",
     "test": "mocha"
