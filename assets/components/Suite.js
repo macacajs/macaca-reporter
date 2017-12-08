@@ -84,7 +84,6 @@ export default class Suite extends React.Component {
     var d3tree = new D3Tree({
       selector: selector,
       data: {
-        id: this._guid(),
         data: data,
         children: suites,
       },
