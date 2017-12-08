@@ -125,7 +125,7 @@ module.exports = {
               "pass": true,
               "fail": false,
               "pending": false,
-              "context": "\"../screenshots/34da7aaa-e94d-48be-a93a-70e851c952af.png\"",
+              "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
               "code": "const url = path.join(__dirname, './pages/desktop-sample.html');\nreturn driver\n  .get(`file://${url}`)\n  .sleep(3000)\n  .execute(`document.querySelector('#select').selectedIndex = 1`)\n  .sleep(1000)\n  .elementById('select')\n  /*\n  .getProperty('value')\n  .then(value => {\n    value.should.be.equal('2');\n  })\n  */\n  .execute(`\n    var element = document.querySelector('#hover_text');\n    var event = document.createEvent('MouseEvent');\n    event.initMouseEvent('mouseover', true, true);\n    element.dispatchEvent(event);\n  `)\n  .elementById('hover_text')\n  .getComputedCss('color')\n  .then(value => {\n    value.should.containEql('255');\n  })\n  // https://github.com/macacajs/macaca-electron#windowalert\n  .execute(`\n    var e = document.createElement('div');\n    e.id = 'alert_msg';\n    window.alert = function() {\n      e.innerHTML = JSON.stringify(arguments[0]);\n      document.body.appendChild(e);\n    };\n  `)\n  .elementById('alert_button')\n  .click()\n  .elementById('alert_msg')\n  .text()\n  .then(value => {\n    value.should.containEql('this message is from alert');\n  })\n  .sleep(3000);",
                             "uuid": "03dacaa9-a969-4f88-bebd-5141fbe35cba",
   "skipped": false
@@ -138,7 +138,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/86f2e889-e641-494e-a989-ab0ab44c69d3.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const initialURL = 'https://www.baidu.com';\nreturn driver\n  .get(initialURL)\n  .sleep(3000)\n  .elementById('kw')\n  .sendKeys('macaca')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .source()\n  .then(function(html) {\n    html.should.containEql('macaca');\n  })\n  .hasElementByCss('#head > div.head_wrapper')\n  .then(function(hasHeadWrapper) {\n    hasHeadWrapper.should.be.true();\n  })\n  .elementByXPathOrNull('//*[@id=\"kw\"]')\n  .sendKeys(' elementByXPath')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .saveScreenshot('pic1');",
                             "uuid": "3ac3ba51-b26a-4fa6-9bd0-9fff568347ea",
     "skipped": false
@@ -151,7 +151,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/f752680b-3e7c-4eda-8eb9-1e4b4b5f96c3.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const initialURL = 'https://www.baidu.com';\nreturn driver\n  .get(initialURL)\n  .sleep(3000)\n  .elementById('kw')\n  .sendKeys('Macaca')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .source()\n  .then(function(html) {\n    html.should.containEql('Macaca');\n  })\n  .saveScreenshot('pic2');",
                             "uuid": "0fadd3ca-8172-40a1-bf86-962d3a809bc8",
     "skipped": false
@@ -164,7 +164,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/2c2e1d9f-0adc-4ddb-9806-e6cc1705544a.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const iframeURL = 'https://xudafeng.github.io/use-tinyMce-textEditor/';\nreturn driver\n  .get(iframeURL)\n  .sleep(3000)\n  .frame('mce_0_ifr')\n  .elementById('tinymce')\n  .sendKeys('这是一段测试')\n  .sleep(3000)\n  .takeScreenshot()\n  .then(imgData => {\n    const newImg = new Buffer(imgData, 'base64');\n    const screenshotFolder = path.resolve(__dirname, '../screenshot');\n    fs.writeFileSync(path.join(screenshotFolder, 'diff.png'), newImg.toString('binary'), 'binary')\n    const oldImgPath = path.join(screenshotFolder, 'origin.png');\n    const diffImgPath = path.join(screenshotFolder, 'diff.png');\n    return true || diffImage(oldImgPath, newImg, 0.1, diffImgPath);\n  })\n  .then(result => {\n    result.should.be.true();\n  })\n  .catch(e => {\n    console.log(e);\n  });",
                             "uuid": "5797160a-75e5-4ab8-a6d4-ab1291e2973e",
     "skipped": false
@@ -229,7 +229,7 @@ module.exports = {
       "pass": true,
       "fail": false,
       "pending": false,
-      "context": "\"../screenshots/34da7aaa-e94d-48be-a93a-70e851c952af.png\"",
+      "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
       "code": "const url = path.join(__dirname, './pages/desktop-sample.html');\nreturn driver\n  .get(`file://${url}`)\n  .sleep(3000)\n  .execute(`document.querySelector('#select').selectedIndex = 1`)\n  .sleep(1000)\n  .elementById('select')\n  /*\n  .getProperty('value')\n  .then(value => {\n    value.should.be.equal('2');\n  })\n  */\n  .execute(`\n    var element = document.querySelector('#hover_text');\n    var event = document.createEvent('MouseEvent');\n    event.initMouseEvent('mouseover', true, true);\n    element.dispatchEvent(event);\n  `)\n  .elementById('hover_text')\n  .getComputedCss('color')\n  .then(value => {\n    value.should.containEql('255');\n  })\n  // https://github.com/macacajs/macaca-electron#windowalert\n  .execute(`\n    var e = document.createElement('div');\n    e.id = 'alert_msg';\n    window.alert = function() {\n      e.innerHTML = JSON.stringify(arguments[0]);\n      document.body.appendChild(e);\n    };\n  `)\n  .elementById('alert_button')\n  .click()\n  .elementById('alert_msg')\n  .text()\n  .then(value => {\n    value.should.containEql('this message is from alert');\n  })\n  .sleep(3000);",
                             "uuid": "03dacaa9-a969-4f88-bebd-5141fbe35cba",
       "skipped": false
@@ -242,7 +242,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/86f2e889-e641-494e-a989-ab0ab44c69d3.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const initialURL = 'https://www.baidu.com';\nreturn driver\n  .get(initialURL)\n  .sleep(3000)\n  .elementById('kw')\n  .sendKeys('macaca')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .source()\n  .then(function(html) {\n    html.should.containEql('macaca');\n  })\n  .hasElementByCss('#head > div.head_wrapper')\n  .then(function(hasHeadWrapper) {\n    hasHeadWrapper.should.be.true();\n  })\n  .elementByXPathOrNull('//*[@id=\"kw\"]')\n  .sendKeys(' elementByXPath')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .saveScreenshot('pic1');",
                             "uuid": "3ac3ba51-b26a-4fa6-9bd0-9fff568347ea",
     "skipped": false
@@ -255,7 +255,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/f752680b-3e7c-4eda-8eb9-1e4b4b5f96c3.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const initialURL = 'https://www.baidu.com';\nreturn driver\n  .get(initialURL)\n  .sleep(3000)\n  .elementById('kw')\n  .sendKeys('Macaca')\n  .sleep(3000)\n  .elementById('su')\n  .click()\n  .sleep(5000)\n  .source()\n  .then(function(html) {\n    html.should.containEql('Macaca');\n  })\n  .saveScreenshot('pic2');",
                             "uuid": "0fadd3ca-8172-40a1-bf86-962d3a809bc8",
     "skipped": false
@@ -268,7 +268,7 @@ module.exports = {
     "pass": true,
     "fail": false,
     "pending": false,
-    "context": "\"../screenshots/2c2e1d9f-0adc-4ddb-9806-e6cc1705544a.png\"",
+    "context": "\"https://avatars1.githubusercontent.com/u/9263023?v=4&s=460\"",
     "code": "const iframeURL = 'https://xudafeng.github.io/use-tinyMce-textEditor/';\nreturn driver\n  .get(iframeURL)\n  .sleep(3000)\n  .frame('mce_0_ifr')\n  .elementById('tinymce')\n  .sendKeys('这是一段测试')\n  .sleep(3000)\n  .takeScreenshot()\n  .then(imgData => {\n    const newImg = new Buffer(imgData, 'base64');\n    const screenshotFolder = path.resolve(__dirname, '../screenshot');\n    fs.writeFileSync(path.join(screenshotFolder, 'diff.png'), newImg.toString('binary'), 'binary')\n    const oldImgPath = path.join(screenshotFolder, 'origin.png');\n    const diffImgPath = path.join(screenshotFolder, 'diff.png');\n    return true || diffImage(oldImgPath, newImg, 0.1, diffImgPath);\n  })\n  .then(result => {\n    result.should.be.true();\n  })\n  .catch(e => {\n    console.log(e);\n  });",
                             "uuid": "5797160a-75e5-4ab8-a6d4-ab1291e2973e",
     "skipped": false
