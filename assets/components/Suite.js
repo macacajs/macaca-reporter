@@ -45,9 +45,13 @@ export default class Suite extends React.Component {
       suite.name = suite.title;
       suite.children = suite.tests;
       suite.id = this._guid();
+      const imgSrc = suite.context && suite.context.replace(/\"/g, '');
+      const isVilidImg = imgSrc
+        && imgSrc.toLowerCase() !== 'undefined'
+        && imgSrc.toLowerCase() !== 'null';
       suite.data = {
         text: suite.title,
-        image: suite.context && suite.context.replace(/\"/g, '') || onePixImg
+        image: isVilidImg ? imgSrc : onePixImg
       };
 
       if (suite.children) {
