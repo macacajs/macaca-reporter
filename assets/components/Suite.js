@@ -18,6 +18,7 @@ const {
 } = _;
 
 let maxD3Height = 0
+const onePixImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 
 require('./Suite.less');
 
@@ -46,7 +47,7 @@ export default class Suite extends React.Component {
       suite.id = this._guid();
       suite.data = {
         text: suite.title,
-        image: suite.context && suite.context.replace(/\"/g, '')
+        image: suite.context && suite.context.replace(/\"/g, '') || onePixImg
       };
 
       if (suite.children) {
