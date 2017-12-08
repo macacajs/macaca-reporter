@@ -89,9 +89,14 @@ export default class Suite extends React.Component {
       },
       width: window.innerWidth,
       height: maxD3Height * 200,
-      imageMaxHeight: 170,
       duration: 1000,
-      marginRight: 300
+      marginRight: 300,
+      itemConfigHandle: img => {
+        return {
+          imageMaxHeight: 170,
+          isVertical: false
+        };
+      }
     });
     d3tree.init();
   }

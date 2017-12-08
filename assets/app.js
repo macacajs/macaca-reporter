@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    [].slice.call(document.querySelectorAll('.d3-tree-image')).forEach(image => {
+    [].slice.call(document.querySelectorAll('image')).forEach(image => {
       image.addEventListener('click', function(e) {
         const href = e.target.getAttribute('href');
         window.open(href);
@@ -96,8 +96,6 @@ container = document.querySelector(`#${pkg.name}`);
 
 if (container.getAttribute(configAttr)) {
   var config = JSON.parse(decodeURI(container.getAttribute(configAttr)));
-
-  console.log(config);
 
   if (config && config.socket) {
     const socket = io(config.socket.server);
