@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.0.25",
+  "version": "1.0.27",
   "description": "macaca reporter",
   "keywords": [
     "macaca",
@@ -29,7 +29,7 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
     "css-loader": "^0.14.5",
-    "d3-tree": "^1.0.9",
+    "d3-tree": "^1.0.10",
     "eslint": "^4.5.0",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.2.1",
