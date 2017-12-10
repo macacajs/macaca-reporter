@@ -18,7 +18,6 @@ const {
 } = _;
 
 let maxD3Height = 0
-const onePixImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 
 require('./Suite.less');
 
@@ -49,7 +48,7 @@ export default class Suite extends React.Component {
       const isVilidImg = imgSrc && imgSrc.toLowerCase() !== '[undefined]';
       suite.data = {
         text: suite.title,
-        image: isVilidImg ? imgSrc : onePixImg
+        image: isVilidImg ? imgSrc : null
       };
 
       if (suite.children) {
