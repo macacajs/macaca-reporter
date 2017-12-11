@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "macaca reporter",
   "keywords": [
     "macaca",
@@ -16,7 +16,7 @@
     "json-stringify-safe": "^5.0.1",
     "macaca-utils": "^1.0.0",
     "microtemplate": "^1.0.2",
-    "mocha": "^2.4.5",
+    "mocha": "^4.0.1",
     "xlogger": "^1.0.6"
   },
   "devDependencies": {
@@ -49,7 +49,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack --watch",
     "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules",
     "lint": "eslint .",
     "prepublish": "npm run build",
