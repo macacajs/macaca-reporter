@@ -18,6 +18,7 @@ const {
 } = _;
 
 let maxD3Height = 0
+let maxD3Width = 1
 
 require('./Suite.less');
 
@@ -40,6 +41,7 @@ export default class Suite extends React.Component {
     if (suites.length > maxD3Height) {
       maxD3Height = suites.length;
     }
+    maxD3Width++;
     suites.forEach((suite, index) => {
       suite.name = suite.title;
       suite.children = suite.tests;
@@ -51,6 +53,10 @@ export default class Suite extends React.Component {
         image: isVilidImg ? imgSrc : null
       };
 
+      if (suite.suites && suite.suites.length) {
+        suite.children = suite.children.concat(suite.suites);
+      }
+
       if (suite.children) {
         this._transtromTree(suite.children);
       }
@@ -60,7 +66,7 @@ export default class Suite extends React.Component {
 
   _deleteNullTest(suites) {
     remove(suites, suite => {
-      const willDelete = !suite.children.length && !suite.suites.length;
+      const willDelete = suite.children && !suite.children.length && !suite.suites.length;
       return willDelete;
     });
     suites.forEach(suite => {
@@ -89,13 +95,13 @@ export default class Suite extends React.Component {
         data: data,
         children: suites,
       },
-      width: window.innerWidth,
+      width: maxD3Width * 330,
       height: maxD3Height * 200,
       duration: 1000,
-      marginRight: 300,
+      marginRight: 400,
       itemConfigHandle: img => {
         return {
-          imageMaxHeight: 170,
+          imageMaxHeight: 100,
           isVertical: false
         };
       }
@@ -172,7 +178,10 @@ export default class Suite extends React.Component {
       }
     ];
 
-    const percent = parseInt(allStats.totalPasses / allStats.totalTests * 100, 10);
+    let percent = 0;
+    if (allStats.totalTests > 0) {
+      percent = parseInt(allStats.totalPasses / allStats.totalTests * 100, 10);
+    }
 
     return (
       <div className="suite">
