@@ -191,15 +191,15 @@ export default class Suite extends React.Component {
             <p>{ allStats.file }</p>
           </div>
           <ul>
-            <li><Icon type="clock-circle-o" /><span>Time: { allStats.duration }ms</span></li>
-            <li><Icon type="inbox" /><span>Tests: { allStats.totalTests }</span></li>
-            <li style={{color: '#a5d86e'}}><Icon type="check" /><span>Passes: { allStats.totalPasses }</span></li>
-            <li style={{color: '#df5869'}}><Icon type="close" /><span>Failures: { allStats.totalFailures }</span></li>
-            <li style={{color: 'rgb(234, 187, 56)'}}><Icon type="pause" /><span>Pending: { allStats.totalPending }</span></li>
-            <li style={{color: '#898989'}}><Icon type="inbox" /><span>Skipped: { allStats.totalSkipped }</span></li>
+            <li><Icon type="clock-circle-o" /><span><span>Time:</span> { allStats.duration }ms</span></li>
+            <li><Icon type="inbox" /><span><span>Tests:</span> { allStats.totalTests }</span></li>
+            <li style={{color: '#a5d86e'}}><Icon type="check" /><span><span>Passes:</span> { allStats.totalPasses }</span></li>
+            <li style={{color: '#df5869'}}><Icon type="close" /><span><span>Failures:</span>  { allStats.totalFailures }</span></li>
+            <li style={{color: 'rgb(234, 187, 56)'}}><Icon type="pause" /><span><span>Pending:</span>  { allStats.totalPending }</span></li>
+            <li style={{color: '#898989'}}><Icon type="inbox" /><span><span>Skipped:</span>  { allStats.totalSkipped }</span></li>
             { percent >= 90
-              ? <li style={{color: '#39a854'}}><Icon type="pie-chart" /><span>rate: { percent }%</span></li>
-              : <li style={{color: '#df5869'}}><Icon type="pie-chart" /><span>rate: { percent }%</span></li>
+              ? <li style={{color: '#39a854'}}><Icon type="pie-chart" /><span><span>rate:</span> { percent }%</span></li>
+              : <li style={{color: '#df5869'}}><Icon type="pie-chart" /><span><span>rate:</span>  { percent }%</span></li>
             }
           </ul>
         </div>
