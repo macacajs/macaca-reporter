@@ -156,6 +156,11 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+
+  .ant-affix {
+    position: relative !important;
+  }
+
   .suite .ani-box {
     display: none;
   }
@@ -164,15 +169,23 @@ body {
     height: 250px;
     ul.head {
       width: 100%;
-      display: block;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+
+      li {
+        height: 80px;
+      }
 
       li:nth-child(1) {
         width: 40%;
+        order: 1
       }
 
       li:nth-child(2){
         width: 60%;
         text-align: left;
+        order: 2
       }
 
       li:nth-child(n + 3) {
@@ -182,9 +195,29 @@ body {
         }
       }
 
-      li {
-        float: left;
-        height: 80px;
+      li:nth-child(3){
+        order: 3
+      }
+      li:nth-child(4){
+        order: 4
+      }
+      li:nth-child(5){
+        order: 9
+      }
+      li:nth-child(6){
+        order: 10
+      }
+      li:nth-child(7){
+        order: 7
+      }
+      li:nth-child(8){
+        order: 8
+      }
+      li:nth-child(9){
+        order: 5
+      }
+      li:nth-child(10){
+        order: 6
       }
     }
   }
@@ -202,10 +235,23 @@ body {
 
   .file-head ul li {
     margin: 0 10px;
+    text-align: center;
 
-    span span {
+    i {
+      text-align: center;
+    }
+
+    span span:nth-child(1) {
       display: none;
     }
+    span span:nth-child(2) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .file-head .anticon {
+    padding-right: 0;
   }
 
   .file-head ul li:nth-child(5),
