@@ -93,7 +93,7 @@ export default class Suite extends React.Component {
         data: data,
         children: suites,
       },
-      width: this.maxD3Width * 300,
+      width: this.maxD3Width > 4 ? this.maxD3Width * 350 : document.querySelector('ul.head').clientWidth,
       height: this.maxD3Height * 300,
       duration: 500,
       imageHeight: 200,
