@@ -17,9 +17,6 @@ const {
   remove
 } = _;
 
-let maxD3Height = 0
-let maxD3Width = 1
-
 require('./Suite.less');
 
 export default class Suite extends React.Component {
@@ -38,10 +35,10 @@ export default class Suite extends React.Component {
   }
 
   _transtromTree(suites) {
-    if (suites.length > maxD3Height) {
-      maxD3Height = suites.length;
+    if (suites.length > this.maxD3Height) {
+      this.maxD3Height = suites.length;
     }
-    maxD3Width++;
+    this.maxD3Width++;
     suites.forEach((suite, index) => {
       suite.name = suite.title;
       suite.children = suite.tests;
@@ -76,7 +73,8 @@ export default class Suite extends React.Component {
   }
 
   componentDidMount() {
-
+    this.maxD3Height = 0;
+    this.maxD3Width = 1;
     var suite = this.props.suite;
     var title = suite.title;
     var suites = this._transtromTree(suite.suites);
@@ -95,13 +93,14 @@ export default class Suite extends React.Component {
         data: data,
         children: suites,
       },
-      width: maxD3Width * 330,
-      height: maxD3Height * 200,
-      duration: 1000,
-      marginRight: 400,
+      width: this.maxD3Width * 300,
+      height: this.maxD3Height * 300,
+      duration: 0,
+      imageHeight: 200,
+      imageWidth: 200,
+      imageMargin: 10,
       itemConfigHandle: img => {
         return {
-          imageMaxHeight: 100,
           isVertical: false
         };
       }
