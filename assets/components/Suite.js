@@ -38,7 +38,6 @@ export default class Suite extends React.Component {
     if (suites.length > this.maxD3Height) {
       this.maxD3Height = suites.length;
     }
-    this.maxD3Width++;
     suites.forEach((suite, index) => {
       suite.name = suite.title;
       suite.children = suite.tests;
@@ -74,7 +73,6 @@ export default class Suite extends React.Component {
 
   componentDidMount() {
     this.maxD3Height = 0;
-    this.maxD3Width = 1;
     var suite = this.props.suite;
     var title = suite.title;
     var suites = this._transtromTree(suite.suites);
@@ -93,7 +91,7 @@ export default class Suite extends React.Component {
         data: data,
         children: suites,
       },
-      width: this.maxD3Width > 4 ? this.maxD3Width * 350 : document.querySelector('ul.head').clientWidth,
+      width: document.querySelector('ul.head').clientWidth,
       height: this.maxD3Height * 300,
       duration: 500,
       imageHeight: 200,
