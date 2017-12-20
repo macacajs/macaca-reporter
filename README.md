@@ -51,12 +51,6 @@ Run with mocha
 $ mocha run --reporter macaca-reporter
 ```
 
-Run with Macaca [torchjs](//github.com/macacajs/torchjs)
-
-```bash
-$ torch --renderer --interactive --watch --notify-on-fail --debug test/*.test.js
-```
-
 ## More usage
 
 [docs](./docs)
