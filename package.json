@@ -54,7 +54,7 @@
     "xutil": "^1.0.9"
   },
   "scripts": {
-    "dev": "webpack --watch",
+    "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack -p --progress --hide-modules",
     "lint": "eslint --fix assets test",
     "prepublish": "npm run build",
