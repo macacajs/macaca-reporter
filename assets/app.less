@@ -157,6 +157,13 @@ body {
 
 @media screen and (max-width: 768px) {
 
+  .ant-table-pagination {
+    float: inherit;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+  }
+
   .ant-affix {
     position: relative !important;
   }
@@ -166,7 +173,7 @@ body {
   }
 
   .ant-layout-header {
-    height: 250px;
+    height: 230px;
     ul.head {
       width: 100%;
       display: flex;
@@ -174,11 +181,22 @@ body {
       justify-content: center;
 
       li {
-        height: 80px;
+        height: 70px;
+        h5 {
+          margin-top: 10px;
+        }
+
+        .ant-progress {
+          position: relative;
+          top: -10px;
+        }
       }
 
       li:nth-child(1) {
         width: 40%;
+        img {
+          height: 50px;
+        }
         order: 1
       }
 
