@@ -29,7 +29,7 @@ describe('test/macaca-reporter.test.js', () => {
 
   it('page render should be ok', () => {
     return driver
-      .get(BASE_URL)
+      .getUrl(BASE_URL)
       .sleep(5000);
   });
 
