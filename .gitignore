@@ -9,7 +9,6 @@ coverage/
 reports/
 screenshots/
 .project
-.ready
 build/
 logs/
 *.sw*
