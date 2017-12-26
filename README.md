@@ -55,6 +55,10 @@ $ mocha run --reporter macaca-reporter
 
 [docs](./docs)
 
+## Thanks to
+
+- [d3-tree](//github.com/zhuyali/d3-tree)
+
 ## License
 
 The MIT License (MIT)
