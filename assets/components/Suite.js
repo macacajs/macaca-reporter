@@ -45,7 +45,7 @@ export default class Suite extends React.Component {
       const imgSrc = suite.context && suite.context.replace(/\"/g, '');
       const isVilidImg = imgSrc && imgSrc.toLowerCase() !== '[undefined]';
       suite.data = {
-        text: suite.title,
+        text: this.autoWrapText(suite.title),
         image: isVilidImg ? imgSrc : null
       };
 
@@ -71,6 +71,27 @@ export default class Suite extends React.Component {
     return suites;
   }
 
+  autoWrapText(text) {
+    let res = '';
+    let number = 15;
+    let flag = 0;
+
+    for (let i = 0; i < text.length; i++) {
+      const current = text[i]
+      res += current;
+      flag++;
+      if (escape(current).length > 4) {
+        flag++;
+      }
+
+      if (flag >= number) {
+        res += '\n';
+        flag = 0;
+      }
+    }
+    return res;
+  }
+
   componentDidMount() {
     this.maxD3Height = 0;
     var suite = this.props.suite;
@@ -80,7 +101,7 @@ export default class Suite extends React.Component {
 
     var data = {
       image: null,
-      text: title
+      text: this.autoWrapText(title)
     };
 
     var selector = `.d3-tree-${this.uid}`;
