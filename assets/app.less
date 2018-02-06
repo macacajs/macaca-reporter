@@ -56,23 +56,6 @@ body {
   padding: 0;
 }
 
-
-.ant-pagination-item:focus,
-.ant-pagination-item:hover {
-  border-color: @main-color;
-}
-
-.ant-pagination-item-active {
-  background-color: #40b884;
-  border-color: #40b884;
-
-  &:focus,
-  &:hover {
-    background-color: #40b884;
-    border-color: #40b884;
-  }
-}
-
 .ant-table-thead > tr.ant-table-row-hover > td,
 .ant-table-tbody > tr.ant-table-row-hover > td,
 .ant-table-thead > tr:hover > td,
@@ -157,6 +140,11 @@ body {
   }
 }
 
+.screen .imagecon {
+  margin: 20px 0;
+}
+
+
 @media screen and (max-width: 768px) {
 
   .ant-table-pagination {
@@ -167,12 +155,20 @@ body {
   }
 
   .ant-affix {
+    overflow: hidden !important;
     position: relative !important;
   }
 
   .suite .ani-box {
     display: none;
   }
+
+  .screen .imagecon {
+    img {
+      height: 180px;
+    }
+  }
+
 
   .ant-layout-header {
     height: 230px;
@@ -181,6 +177,8 @@ body {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
 
       li {
         height: 70px;
