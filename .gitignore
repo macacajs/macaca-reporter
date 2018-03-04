@@ -8,7 +8,6 @@ Thumbs.db
 coverage/
 reports/
 screenshots/
-.project
 build/
 logs/
 *.sw*

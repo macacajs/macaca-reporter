@@ -1,9 +1,13 @@
 'use strict';
 
 import {
+  webpackHelper,
+} from 'macaca-wd';
+
+const {
   driver,
-  BASE_URL
-} from './helper';
+  BASE_URL,
+} = webpackHelper;
 
 describe('test/macaca-reporter.test.js', () => {
   before(() => {
