@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "macaca reporter",
   "keywords": [
     "macaca",
@@ -63,6 +63,6 @@
     "test": "macaca run -d ./test --reporter macaca-reporter",
     "ci": "npm run lint && npm run serve && npm run test"
   },
-  "homepage": "https://macacajs.github.io/pageuitest",
+  "homepage": "https://macacajs.github.io",
   "license": "MIT"
 }

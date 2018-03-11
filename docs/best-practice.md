@@ -1,6 +1,6 @@
 ## Best Practice
 
-``` javascript
+```javascript
 const appendToContext = require('macaca-reporter').appendToContext;
 
 // XXX.test.js

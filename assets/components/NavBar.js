@@ -7,6 +7,8 @@ import {
 
 require('./NavBar.less');
 
+const pkg = require('../../package.json');
+
 export default class NavBar extends React.Component {
 
   constructor(props) {
@@ -18,7 +20,9 @@ export default class NavBar extends React.Component {
     return (
       <ul className="head">
         <li>
-          <img className="page-logo" src="https://npmcdn.com/macaca-logo@latest/svg/monkey.svg" />
+          <a href={ pkg.homepage }>
+            <img className="page-logo" src="https://npmcdn.com/macaca-logo@latest/svg/monkey.svg" />
+          </a>
         </li>
         <li>
           <span className="page-title">Macaca Reporter</span>

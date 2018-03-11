@@ -67,7 +67,7 @@ class App extends React.Component {
           }
         </Content>
         <Footer>
-          &copy;&nbsp;<a target="_blank" href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
+          &copy;&nbsp;<a href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
         </Footer>
       </Layout>
      )
