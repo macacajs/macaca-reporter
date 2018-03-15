@@ -277,10 +277,23 @@ body {
   }
 }
 
-.case-show-panel {
-  padding: 10px 0;
+.panel-container {
   width: 1280px;
   margin: 0 auto;
+  position: fixed;
+  top: 110px;
+  right: 10px;
+  z-index: 99999;
+}
+
+.case-show-panel {
+  float: right;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+
+  &:hover {
+    opacity: 1;
+  }
 
   .case-show-radio {
     float: right;

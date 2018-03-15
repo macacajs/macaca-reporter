@@ -12,7 +12,6 @@
     "url": "git://github.com/macacajs/macaca-reporter.git"
   },
   "dependencies": {
-    "chalk": "^2.1.0",
     "json-stringify-safe": "^5.0.1",
     "macaca-utils": "^1.0.0",
     "microtemplate": "^1.0.2",
@@ -55,7 +54,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "dev:test": "NODE_ENV=test webpack-dev-server",
+    "dev:test": "NODE_ENV=test npm run dev",
     "build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint --ext js,jsx --fix assets test",
     "prepublish": "npm run build",

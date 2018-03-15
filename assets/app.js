@@ -11,7 +11,8 @@ import {
   Col,
   Row,
   Layout,
-  Radio
+  Radio,
+  BackTop,
 } from 'antd';
 
 import io from 'socket.io-client';
@@ -127,9 +128,7 @@ class App extends React.Component {
           </Header>
         </Affix>
         <Content>
-          <div style={{
-            background: this.state.caseShowType === 'image' ? '#fff' : '#f7f7f7'
-          }}>
+          <div className="panel-container">
             <div className="case-show-panel">
               <Radio.Group className="case-show-radio" value={caseShowType} onChange={this.handleRadioChange.bind(this)}>
                 <Radio.Button value="tree">
@@ -155,6 +154,7 @@ class App extends React.Component {
         <Footer>
           &copy;&nbsp;<a href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
         </Footer>
+        <BackTop />
       </Layout>
      )
   }
