@@ -44,7 +44,7 @@ class App extends React.Component {
     container = document.querySelector(`#${pkg.name}`);
     this.state = {
       output: JSON.parse(decodeURI(container.getAttribute(dataAttr))),
-      caseShowType: location.hash.replace('#', '') || 'tree',
+      caseShowType: location.hash.replace('#mode=', '') || 'tree',
       images: []
     };
   }
@@ -69,7 +69,7 @@ class App extends React.Component {
 
   handleRadioChange(e) {
     const radio = e.target.value;
-    location.hash = radio;
+    location.hash = `mode=${radio}`;
 
     this.setState({
       caseShowType: e.target.value,
