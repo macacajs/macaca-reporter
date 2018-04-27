@@ -60,7 +60,7 @@
     "lint": "eslint --ext js,jsx --fix assets test",
     "prepublish": "npm run build",
     "serve": "npm run dev:test &",
-    "test": "macaca run -d ./test --reporter macaca-reporter",
+    "test": "macaca run -d ./test",
     "ci": "npm run lint && npm run serve && npm run test",
     "contributor": "git-contributor"
   },
