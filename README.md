@@ -67,7 +67,7 @@ $ mocha run --reporter macaca-reporter
 | :---: | :---: | :---: |
 
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor.git), auto upated at `Sun Mar 25 2018 17:18:59 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor.git), auto upated at `Tue May 01 2018 01:05:26 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 
