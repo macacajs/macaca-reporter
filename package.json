@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "reporter for Macaca",
   "keywords": [
     "macaca",
@@ -35,14 +35,14 @@
     "eslint": "^4.5.0",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.2.1",
-    "git-contributor": "^1.0.3",
+    "git-contributor": "1",
     "json-loader": "^0.5.7",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.4",
-    "macaca-cli": "^2.0.12",
+    "macaca-cli": "2",
     "macaca-electron": "2",
-    "macaca-wd": "^1.1.1",
+    "macaca-wd": "2",
     "mini-css-extract-plugin": "^0.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -52,7 +52,7 @@
     "webpack": "^4.10.0",
     "webpack-cli": "^3.0.1",
     "webpack-dev-server": "^3.1.4",
-    "xutil": "^1.0.9"
+    "xutil": "1"
   },
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
