@@ -230,7 +230,7 @@ export default class Suite extends React.Component {
 
         <div style={{ display: this.props.showSvg ? 'block' : 'none' }} className={ `ani-box d3-tree-${this.uid}` }></div>
         <Table
-          pagination={ false }
+          pagination={ !this.props.showSuite }
           columns={ columns }
           defaultExpandedRowKeys={ failKeys }
           expandedRowRender={ record =>
