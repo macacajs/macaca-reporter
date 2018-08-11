@@ -146,7 +146,14 @@ class App extends React.Component {
           <Screen current={ current } />
           {
             originSuites.suites && originSuites.suites.map((suite, index) => {
-              return <Suite showSuite={ caseShowType !== 'image' } showSvg={ caseShowType !== 'text' } suite={ suite } key={ index } />
+              return (
+                <Suite
+                  showSuite={ caseShowType !== 'image' }
+                  showSvg={ caseShowType !== 'text' }
+                  suite={ suite }
+                  key={ index }
+                />
+              )
             })
           }
           { this.renderImages(imgs) }
