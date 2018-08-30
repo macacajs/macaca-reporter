@@ -88,7 +88,7 @@ class App extends React.Component {
     const imgs = _.uniqBy(images, item => item.src);
 
     const cards = imgs.map((img, index) => {
-      return (
+      if (img.src && !~img.src.indexOf('undefined')) return (
         <Col key={ index } span={4} style={{ padding: '5px' }}>
           <Card
             hoverable
