@@ -1,10 +1,17 @@
 {
   "name": "macaca-reporter",
-  "version": "1.2.2",
+  "version": "1.2.10",
   "description": "reporter for Macaca",
   "keywords": [
     "macaca",
-    "reporter"
+    "reporter",
+    "coverage"
+  ],
+  "files": [
+    "dist/*.js",
+    "dist/*.css",
+    "lib/**/*.js",
+    "lib/*.html"
   ],
   "main": "lib/macaca-reporter.js",
   "repository": {
