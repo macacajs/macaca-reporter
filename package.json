@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "reporter for Macaca",
   "keywords": [
     "macaca",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "json-stringify-safe": "^5.0.1",
+    "macaca-coverage": "^1.0.3",
     "macaca-utils": "^1.0.0",
     "microtemplate": "^1.0.2",
     "mocha": "^4.0.1",
