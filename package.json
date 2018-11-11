@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.1.14",
+  "version": "1.2.0",
   "description": "reporter for Macaca",
   "keywords": [
     "macaca",
@@ -48,6 +48,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-syntax-highlighter": "^5.6.3",
+    "remap-istanbul": "^0.11.0",
     "socket.io": "^2.0.3",
     "style-loader": "^0.18.2",
     "webpack": "^4.10.0",
