@@ -1,7 +1,7 @@
 {
   "name": "macaca-reporter",
   "version": "1.2.10",
-  "description": "reporter for Macaca",
+  "description": "Reporter used for mocha and other frameworks.",
   "keywords": [
     "macaca",
     "reporter",
@@ -58,6 +58,7 @@
     "react-syntax-highlighter": "^5.6.3",
     "socket.io": "^2.0.3",
     "style-loader": "^0.18.2",
+    "vuepress": "^0.14.8",
     "webpack": "^4.10.0",
     "webpack-cli": "^3.0.1",
     "webpack-dev-server": "^3.1.4",
@@ -72,7 +73,9 @@
     "serve": "npm run dev:test &",
     "test": "macaca run -d ./test",
     "ci": "npm run lint && npm run serve && npm run test",
-    "contributor": "git-contributor"
+    "contributor": "git-contributor",
+    "docs:dev": "vuepress dev docs_src",
+    "docs:build": "vuepress build docs_src"
   },
   "homepage": "https://macacajs.github.io",
   "license": "MIT"

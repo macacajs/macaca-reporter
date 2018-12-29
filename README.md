@@ -16,7 +16,7 @@
 
 ---
 
-> macaca-reporter is a reporter used for mocha and other frameworks.
+> Reporter used for mocha and other frameworks.
 
 ## Installment
 
