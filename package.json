@@ -72,7 +72,6 @@
     "prepublish": "npm run build",
     "serve": "npm run dev:test &",
     "test": "macaca run -d ./test",
-    "ci": "npm run lint && npm run serve && npm run test",
     "contributor": "git-contributor",
     "docs:dev": "vuepress dev docs_src",
     "docs:build": "vuepress build docs_src"
