@@ -1,7 +1,7 @@
 ---
 
 home: true
-heroImage: http://wx4.sinaimg.cn/large/6d308bd9gy1fivuatxep5j21kw13dgs6.jpg
+heroImage: https://macacajs.github.io/macaca-logo/svg/monkey.svg
 actionText: Try it Out →
 actionLink: /guide/install.html
 features:
@@ -15,3 +15,15 @@ footer: MIT Licensed | Copyright © 2015-present Macaca
 # install
 $ npm i macaca-reporter --save
 ```
+
+::: tip
+Use Macaca Reporter to see more use case visualizations.
+:::
+
+![](http://wx4.sinaimg.cn/large/6d308bd9gy1fivuatxep5j21kw13dgs6.jpg)
+
+::: tip
+Use cases show more friendly.
+:::
+
+![](http://wx3.sinaimg.cn/large/6d308bd9gy1fivtfos9r5j21kw130af7.jpg)
