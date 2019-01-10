@@ -8,7 +8,7 @@ describe.only('test/render.test.js', () => {
   });
 
   it('reporter render should be ok', () => {
-    console.log(data);
+    render(data);
   });
 
 });
