@@ -1,4 +1,4 @@
-const suites = require('./suites');
+const suites = require('./fixtures/suites');
 
 module.exports = {
   stats: {
