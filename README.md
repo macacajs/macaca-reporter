@@ -37,6 +37,7 @@ $ npm i macaca-reporter --save-dev
 - Supports displaying failed tests
 - Supprtts custom options
 
+    
 ## Usage with macaca-cli
 
 ```bash
