@@ -3,9 +3,7 @@
 const render = require('../lib/render');
 const data = require('./fixtures/final');
 
-describe.only('test/render.test.js', () => {
-  before(() => {
-  });
+describe('test/render.test.js', () => {
 
   it('reporter render should be ok', () => {
     render(data);

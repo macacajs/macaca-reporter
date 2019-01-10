@@ -44,6 +44,7 @@
     "eslint": "^4.5.0",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.2.1",
+    "flatted": "^2.0.0",
     "git-contributor": "1",
     "json-loader": "^0.5.7",
     "less": "^2.7.2",
