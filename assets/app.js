@@ -99,9 +99,9 @@ class App extends React.Component {
       return null;
     }
 
-    let imgs = _.uniqBy(images, item => item.src)
+    let imgs = _.uniqBy(images, item => item.src);
 
-    imgs = imgs.filter(img => img.src && !~img.src.indexOf('undefined'))
+    imgs = imgs.filter(img => img.src && !~img.src.indexOf('undefined'));
 
     let cards = imgs.map((img, index) => {
       return (
@@ -115,8 +115,8 @@ class App extends React.Component {
             />
           </Card>
         </Col>
-      )
-    })
+      );
+    });
 
     if (!imgs.length) {
       cards = <Empty />;
