@@ -1,4 +1,18 @@
+<p align="center">
+  <a href="//macacajs.github.io">
+    <img
+      alt="Macaca"
+      src="https://macacajs.github.io/macaca-logo/svg/monkey.svg"
+      width="200"
+    />
+  </a>
+</p>
+
+---
+
 # macaca-reporter
+
+[Official Site](//macacajs.github.io/macaca-reporter/)
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -16,7 +30,17 @@
 
 ---
 
-> Reporter used for mocha and other frameworks.
+<!-- GITCONTRIBUTOR_START -->
+
+## Contributors
+
+|[<img src="https://avatars1.githubusercontent.com/u/1011681?v=4" width="100px;"/><br/><sub><b>xudafeng</b></sub>](https://github.com/xudafeng)<br/>|[<img src="https://avatars1.githubusercontent.com/u/11460601?v=4" width="100px;"/><br/><sub><b>zivyangll</b></sub>](https://github.com/zivyangll)<br/>|[<img src="https://avatars0.githubusercontent.com/u/8198256?v=4" width="100px;"/><br/><sub><b>SamuelZhaoY</b></sub>](https://github.com/SamuelZhaoY)<br/>
+| :---: | :---: | :---: |
+
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto upated at `Wed Jan 16 2019 00:07:00 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->
 
 ## Installment
 
@@ -37,7 +61,6 @@ $ npm i macaca-reporter --save-dev
 - Supports displaying failed tests
 - Supprtts custom options
 
-    
 ## Usage with macaca-cli
 
 ```bash
@@ -52,25 +75,9 @@ Run with mocha
 $ mocha run --reporter macaca-reporter
 ```
 
-## More usage
-
-[docs](./docs)
-
 ## Thanks to
 
 - [d3-tree](//github.com/zhuyali/d3-tree)
-
-<!-- GITCONTRIBUTOR_START -->
-
-## Contributors
-
-|[<img src="https://avatars1.githubusercontent.com/u/1011681?v=4" width="100px;"/><br/><sub><b>xudafeng</b></sub>](https://github.com/xudafeng)<br/>|[<img src="https://avatars1.githubusercontent.com/u/11460601?v=4" width="100px;"/><br/><sub><b>zivyll</b></sub>](https://github.com/zivyll)<br/>|[<img src="https://avatars0.githubusercontent.com/u/8198256?v=4" width="100px;"/><br/><sub><b>SamuelZhaoY</b></sub>](https://github.com/SamuelZhaoY)<br/>
-| :---: | :---: | :---: |
-
-
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor.git), auto upated at `Tue May 01 2018 01:05:26 GMT+0800`.
-
-<!-- GITCONTRIBUTOR_END -->
 
 ## License
 
