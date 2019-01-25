@@ -77,8 +77,8 @@
     "test": "macaca run -d ./test",
     "test:unit": "mocha",
     "contributor": "git-contributor",
-    "docs:dev": "vuepress dev docs_src",
-    "docs:build": "vuepress build docs_src"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "husky": {
     "hooks": {

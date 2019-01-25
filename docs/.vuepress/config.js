@@ -5,7 +5,7 @@ const macacaEcosystem = require('macaca-ecosystem');
 const name = 'macaca-reporter';
 
 module.exports = {
-  dest: 'docs',
+  dest: 'docs_dist',
   base: `/${name}/`,
 
   locales: {
@@ -41,7 +41,7 @@ module.exports = {
   themeConfig: {
     repo: `macacajs/${name}`,
     editLinks: true,
-    docsDir: 'docs_src',
+    docsDir: 'docs',
     locales: {
       '/': {
         label: 'English',
