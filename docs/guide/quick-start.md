@@ -79,7 +79,7 @@ $ mocha run --reporter macaca-reporter
 ## Generate a reporter using command line tools
 
 ```
-$ cd macaca-reporter
-$ ./bin/macaca-reporter -d 'test/fixtures/final'
+$ npm i macaca-reporter -g
+$ macaca-reporter -d 'test/fixtures/final'
 ```
 
