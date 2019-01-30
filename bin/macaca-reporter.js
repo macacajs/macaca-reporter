@@ -32,6 +32,6 @@ if (!program.data) {
   process.exit(0);
 }
 
-const data = path.resolve(cwd, program.data);
+const data = require(path.resolve(cwd, program.data));
 render(data);
 

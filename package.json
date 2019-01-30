@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "description": "Reporter used for mocha and other frameworks.",
   "keywords": [
     "macaca",
@@ -13,6 +13,9 @@
     "lib/**/*.js",
     "lib/*.html"
   ],
+  "bin": {
+    "macaca-reporter": "./bin/macaca-reporter.js"
+  },
   "main": "lib/macaca-reporter.js",
   "repository": {
     "type": "git",
