@@ -76,3 +76,10 @@ Example: [sample-nodejs](https://github.com/macaca-sample/sample-nodejs)
 $ mocha run --reporter macaca-reporter
 ```
 
+## Generate a reporter using command line tools
+
+```
+$ cd macaca-reporter
+$ ./bin/macaca-reporter -d 'test/fixtures/final'
+```
+
