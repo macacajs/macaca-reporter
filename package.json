@@ -8,6 +8,7 @@
     "coverage"
   ],
   "files": [
+    "bin",
     "dist/*.js",
     "dist/*.css",
     "lib/**/*.js",
