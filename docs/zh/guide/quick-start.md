@@ -4,7 +4,7 @@
 
 ## 编写用例最佳实践
 
-最外层 suit 名称为文件名，然后是用例 suit 名称，之后是用例。
+最外层 suite 名称为文件名，然后是用例 suite 名称，之后是用例。
 
 ```javascript
 const appendToContext = require('macaca-reporter').appendToContext;
@@ -76,7 +76,7 @@ Example: [sample-nodejs](https://github.com/macaca-sample/sample-nodejs)
 $ mocha run --reporter macaca-reporter
 ```
 
-## 使用命令行工具生成报告器
+## 命令行工具生成报告
 
 ```
 $ npm i macaca-reporter -g

@@ -6,13 +6,11 @@ actionText: 立即使用 →
 actionLink: /zh/guide/install.html
 features:
 - title: 链路刻画
-  details: 配合自动截图功能能够刻画完整的链路
-- title: 多类型用例
-  details: 能够支持成功、失败、跳过等类型的用例展示
-- title: 通过率计算
-  details: 支持计算用例通过率
-- title: 二次开发
-  details: 支持二次定制开发，添加功能
+  details: 支持链路树、脑图、全图等多种展示模式
+- title: 支持截图
+  details: 支持在用例运行过程中产生的截图展示
+- title: 开发扩展
+  details: 支持二次开发，扩展功能
 footer: MIT Licensed | Copyright © 2015-present Macaca
 
 ---

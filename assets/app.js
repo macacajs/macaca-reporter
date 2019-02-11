@@ -209,7 +209,6 @@ class App extends React.Component {
               </Radio.Group>
             </div>
           </div>
-          
           <Screen current={ current } />
           { showType === 'mind' && <Mind suites={ originSuites.suites }/> }
           {
@@ -242,9 +241,13 @@ class App extends React.Component {
             </a>
           </Modal>
         </Content>
-        <Footer>
-          &copy;&nbsp;<a href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
-        </Footer>
+        {
+          showType !== 'mind' && (
+            <Footer>
+              &copy;&nbsp;<a href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
+            </Footer>
+          )
+        }
         <BackTop />
       </Layout>
     )

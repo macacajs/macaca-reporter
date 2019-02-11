@@ -119,7 +119,6 @@ function genSidebarConfig(arr) {
       collapsable: false,
       children: [
         'install',
-        'feature',
         'quick-start',
       ],
     },
