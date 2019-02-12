@@ -57,7 +57,7 @@ module.exports = {
         nav: [
           {
             text: 'Guide',
-            link: '/guide/install.html'
+            link: '/guide/'
           },
           macacaEcosystem.en,
         ],
@@ -83,7 +83,7 @@ module.exports = {
         nav: [
           {
             text: '指南',
-            link: '/zh/guide/install.html'
+            link: '/zh/guide/'
           },
           macacaEcosystem.zh,
         ],

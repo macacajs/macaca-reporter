@@ -3,7 +3,7 @@
 home: true
 heroImage: https://macacajs.github.io/macaca-logo/svg/monkey.svg
 actionText: Try it Out →
-actionLink: /guide/install.html
+actionLink: /guide/
 features:
 - title: Multi-type viewer
   details: Supports displaying tree-view, mind-view, images

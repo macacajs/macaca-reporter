@@ -3,7 +3,7 @@
 home: true
 heroImage: https://macacajs.github.io/macaca-logo/svg/monkey.svg
 actionText: 立即使用 →
-actionLink: /zh/guide/install.html
+actionLink: /zh/guide/
 features:
 - title: 链路刻画
   details: 支持链路树、脑图、全图等多种展示模式
