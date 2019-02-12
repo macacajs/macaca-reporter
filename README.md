@@ -30,6 +30,8 @@
 
 ---
 
+[Offcial Site](//macacajs.github.io/macaca-reporter)
+
 <!-- GITCONTRIBUTOR_START -->
 
 ## Contributors
@@ -42,39 +44,12 @@ This project follows the git-contributor [spec](https://github.com/xudafeng/git-
 
 <!-- GITCONTRIBUTOR_END -->
 
-## Installment
-
-```bash
-$ npm i macaca-reporter --save-dev
-```
-
 ## Sample
 
 <div align="center">
   <img src="http://wx4.sinaimg.cn/large/6d308bd9gy1fivuatxep5j21kw13dgs6.jpg" />
   <img src="http://wx3.sinaimg.cn/large/6d308bd9gy1fivtfos9r5j21kw130af7.jpg" />
 </div>
-
-## Features
-
-- Supports displaying tree view
-- Supports displaying failed tests
-- Supprtts custom options
-
-## Usage with macaca-cli
-
-```bash
-$ macaca run --reporter macaca-reporter
-```
-
-- [web-app-bootstrap](//github.com/app-bootstrap/web-app-bootstrap)
-- [sample-nodejs](//github.com/macaca-sample/sample-nodejs)
-
-Run with mocha
-
-```bash
-$ mocha run --reporter macaca-reporter
-```
 
 ## Thanks to
 

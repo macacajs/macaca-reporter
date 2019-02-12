@@ -2,6 +2,12 @@
 
 ---
 
+## 示例工程
+
+- [web-app-bootstrap](//github.com/app-bootstrap/web-app-bootstrap)
+- [sample-nodejs](//github.com/macaca-sample/sample-nodejs)
+- [Hilo](//github.com/hiloteam/Hilo)
+
 ## 编写用例最佳实践
 
 最外层 suite 名称为文件名，然后是用例 suite 名称，之后是用例。
