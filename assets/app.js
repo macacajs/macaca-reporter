@@ -90,7 +90,8 @@ class App extends React.Component {
       if (tagName === 'IMAGE') {
         href = target.getAttribute('href');
         const titleContainer = target.nextElementSibling;
-        title = titleContainer && titleContainer.querySelector('tspan').innerHTML;
+        const textArray = [].slice.call(titleContainer && titleContainer.querySelectorAll('tspan') || [])
+        title = textArray.reduce((pre, current) => pre + current.innerHTML, '')
       } else if (tagName === 'IMG') {
         href = target.getAttribute('src');
         title = target.getAttribute('data-title');
