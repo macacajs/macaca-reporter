@@ -67,6 +67,7 @@ $ npm i macaca-reporter --save-dev
 $ macaca run --reporter macaca-reporter
 ```
 
+- [web-app-bootstrap](//github.com/app-bootstrap/web-app-bootstrap)
 - [sample-nodejs](//github.com/macaca-sample/sample-nodejs)
 
 Run with mocha
