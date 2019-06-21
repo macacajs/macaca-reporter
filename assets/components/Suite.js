@@ -90,7 +90,7 @@ export default class Suite extends React.Component {
     const d3Data = {
       data: {
         image: null,
-        text: _.autoWrapText(suite.title)
+        text: _.autoWrapText(suite.title) || '',
       },
     }
 
