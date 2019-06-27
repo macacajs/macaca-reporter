@@ -76,9 +76,8 @@ export default class Mind extends React.Component {
 
     new Editor.Mind({
       defaultData: mindSuite,
-      labelEditable: false,
-      mode: 'readOnly',
       graph: {
+        mode: 'readOnly',
         container: 'mind-node',
         height: window.innerHeight - 100,
         width: window.innerWidth,
