@@ -161,7 +161,7 @@ class App extends React.Component {
     });
 
     if (!imgs.length) {
-      cards = <Empty />;
+      cards = <Empty description={null} />;
     }
 
     return (
