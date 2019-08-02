@@ -55,7 +55,7 @@ $ mocha test.js --reporter mochawesome --reporter-options reportJSONFilename=cus
 | :---: | :---: | :---: | :---: | :---: |
 
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Thu Jun 27 2019 17:35:26 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Fri Aug 02 2019 20:48:25 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 
@@ -65,6 +65,15 @@ This project follows the git-contributor [spec](https://github.com/xudafeng/git-
   <img src="https://macacajs.github.io/macaca-reporter/assets/6d308bd9gy1fivuatxep5j21kw13dgs6.jpg" />
   <img src="https://macacajs.github.io/macaca-reporter/assets/6d308bd9gy1fivtfos9r5j21kw130af7.jpg" />
 </div>
+
+## Who are using
+
+- ⭐⭐⭐[alibaba/uirecorder](//github.com/alibaba/uirecorder)
+- ⭐⭐⭐[apache/incubator-weex](//github.com/apache/incubator-weex)
+- ⭐⭐⭐[hiloteam/Hilo](//github.com/hiloteam/Hilo)
+- ⭐⭐⭐[xudafeng/autoresponsive-react](//github.com/xudafeng/autoresponsive-react)
+
+[For more](//github.com/macacajs/macaca-reporter/network/dependents)
 
 ## Thanks to
 
