@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactGA from 'react-ga';
 import ReactDom from 'react-dom';
 import CircularJson from 'macaca-circular-json';
 
@@ -39,6 +40,11 @@ require('./app.less');
 let container;
 const dataAttr = 'data-output';
 const configAttr = 'config-output';
+
+window.addEventListener('load', () => {
+  ReactGA.initialize('UA-49226133-2');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+});
 
 class App extends React.Component {
 
