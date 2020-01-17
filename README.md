@@ -44,7 +44,12 @@ mocha.opts:
 
 with command:
 ```
-$ mocha test.js --reporter mochawesome --reporter-options reportJSONFilename=customReportJSONFilename
+$ mocha test.js --reporter macaca-reporter --reporter-options reportJSONFilename=customReportJSONFilename
+```
+
+custom reporter directory with environment variable
+```
+MACACA_REPORTER_DIR=customDirName
 ```
 
 <!-- GITCONTRIBUTOR_START -->
