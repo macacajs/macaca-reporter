@@ -47,3 +47,6 @@ runner.once('end', () => {
 
 参考项目：[Hilo](https://github.com/hiloteam/Hilo/blob/dev/gulpfile.js#L287)
 
+## Java 工程集成
+
+使用 [macaca-reporter-java-plugin](//github.com/macacajs/macaca-reporter-java-plugin) 可以完成 Java 工程的集成使用。

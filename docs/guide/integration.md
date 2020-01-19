@@ -47,3 +47,6 @@ After the data is generated, the reporter page is rendered by the render method:
 
 code：[Hilo](https://github.com/hiloteam/Hilo/blob/dev/gulpfile.js#L287)
 
+## Java Project
+
+[macaca-reporter-java-plugin](//github.com/macacajs/macaca-reporter-java-plugin)

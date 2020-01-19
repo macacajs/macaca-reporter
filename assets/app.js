@@ -44,6 +44,7 @@ const configAttr = 'config-output';
 window.addEventListener('load', () => {
   ReactGA.initialize('UA-49226133-2');
   ReactGA.pageview(window.location.pathname + window.location.search);
+  process.env.traceFragment;
 });
 
 class App extends React.Component {

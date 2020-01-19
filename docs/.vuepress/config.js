@@ -1,6 +1,7 @@
 'use strict';
 
 const macacaEcosystem = require('macaca-ecosystem');
+const traceFragment = require('macaca-ecosystem/lib/trace-fragment');
 
 const name = 'macaca-reporter';
 
@@ -31,6 +32,7 @@ module.exports = {
       gtag('js', new Date());
       gtag('config', 'UA-49226133-2');
     `],
+    ['script', {}, traceFragment],
     ['style', {}, `
       img {
         width: 100%;
