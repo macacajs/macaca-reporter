@@ -19,13 +19,13 @@
 [![Test coverage][coveralls-image]][coveralls-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/macaca-reporter.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/macaca-reporter.svg
 [npm-url]: https://npmjs.org/package/macaca-reporter
-[travis-image]: https://img.shields.io/travis/macacajs/macaca-reporter.svg?style=flat-square
-[travis-url]: https://travis-ci.org/macacajs/macaca-reporter
-[coveralls-image]: https://img.shields.io/coveralls/macacajs/macaca-reporter.svg?style=flat-square
+[travis-image]: https://travis-ci.com/macacajs/macaca-reporter.svg
+[travis-url]: https://travis-ci.com/macacajs/macaca-reporter
+[coveralls-image]: https://img.shields.io/coveralls/macacajs/macaca-reporter.svg
 [coveralls-url]: https://coveralls.io/r/macacajs/macaca-reporter?branch=master
-[download-image]: https://img.shields.io/npm/dm/macaca-reporter.svg?style=flat-square
+[download-image]: https://img.shields.io/npm/dm/macaca-reporter.svg
 [download-url]: https://npmjs.org/package/macaca-reporter
 
 ---
