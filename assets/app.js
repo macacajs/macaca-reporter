@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import ReactDom from 'react-dom';
 import CircularJson from 'macaca-circular-json';
 import { openPhotoSwipe } from './components/PhotoSwipe';
-
 import {
   Affix,
   Icon,
@@ -17,7 +16,8 @@ import {
   Empty,
   BackTop,
 } from 'antd';
-
+import uniqBy from 'lodash/uniqBy';
+import flatten from 'lodash/flatten';
 import io from 'socket.io-client';
 
 const Header = Layout.Header;
@@ -25,17 +25,16 @@ const Footer = Layout.Footer;
 const Content = Layout.Content;
 const { Meta } = Card;
 
-import _ from './common/helper';
+import { guid } from '@/common/helper';
 import Mind from './components/Mind';
 import Suite from './components/Suite';
 import NavBar from './components/NavBar';
 import Screen from './components/Screen';
-
-const pkg = require('../package.json')
+import pkg from '../package.json';
 
 window.images = [];
 
-require('./app.less');
+import './app.less';
 
 let container;
 const dataAttr = 'data-output';
@@ -77,6 +76,7 @@ class App extends React.Component {
 
     let timer = setInterval(() => {
       if (window.images) {
+
         clearInterval(timer)
         this.setState({
           images: window.images
@@ -171,7 +171,7 @@ class App extends React.Component {
       return null;
     }
 
-    let imgs = _.uniqBy(images, item => item.src);
+    let imgs = uniqBy(images, item => item.src);
 
     imgs = imgs.filter(img => img.src && !~img.src.indexOf('undefined'));
 
@@ -179,20 +179,42 @@ class App extends React.Component {
       const title = img.text
       const imgList = img.src.replace(/[\[\] "]/g,'').split('\n').filter(i => i); // handle multi image
 
-      return imgList.map((item) => (
-        <Col key={_.guid()} span={4} style={{ padding: '5px' }}>
-          <Card
-            hoverable
-            cover={<img data-index={index} className="picture-item" src={ item } data-title={ title } />}
-          >
-            <Meta
-              description={ title.split(' -- ') && title.split(' -- ').reverse()[0] }
-            />
-          </Card>
-        </Col>
-      ));
+      return imgList.map((item) => {
+        const isVideo = item.endsWith('.webm');
+        return (
+          <Col key={guid()} span={isVideo ? 8 : 4} style={{ padding: '5px' }}>
+            <Card
+              hoverable
+              cover={
+                isVideo
+                ?
+                  <a href={item} target="_blank">
+                    <video
+                      data-index={index}
+                      className="video-item"
+                      src={item}
+                      data-title={title}
+                      controls
+                    />
+                  </a>
+                :
+                  <img
+                    data-index={index}
+                    className="picture-item"
+                    src={item}
+                    data-title={title}
+                  />
+              }
+            >
+              <Meta
+                description={ title.split(' -- ') && title.split(' -- ').reverse()[0] }
+              />
+            </Card>
+          </Col>
+        );
+      });
     });
-    cards =  _.flatten(cards);
+    cards = flatten(cards);
 
     if (!imgs.length) {
       cards = <Empty description={null} />;
@@ -234,7 +256,7 @@ class App extends React.Component {
                   <Icon type="cluster" />
                 </Radio.Button>
                 <Radio.Button value="image">
-                  <Icon type="picture" />
+                  <Icon type="video-camera" />
                 </Radio.Button>
                 <Radio.Button value="text">
                   <Icon type="table" />
