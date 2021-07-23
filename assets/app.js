@@ -33,9 +33,7 @@ import Screen from './components/Screen';
 import pkg from '../package.json';
 
 window.images = [];
-
 import './app.less';
-
 let container;
 const dataAttr = 'data-output';
 const configAttr = 'config-output';
@@ -91,7 +89,6 @@ class App extends React.Component {
       const tagName = target.tagName.toUpperCase();
 
       const zoom = 0.6;
-
       if (tagName === 'IMAGE') {
         let index = 0;
         const items = [];
@@ -128,7 +125,7 @@ class App extends React.Component {
       } else if (tagName === 'IMG' && target.classList.contains('picture-item')) {
         const index = parseInt(target.getAttribute('data-index'), 10);
         const items = [];
-        document.querySelectorAll('img.picture-item').forEach(item => {
+        document.querySelectorAll('#display-items .display-item').forEach(item => {
           const src = item.getAttribute('src');
           const title = item.getAttribute('data-title');
           const { width: imageWidth, height: imageHeight } = item.getBoundingClientRect();
@@ -166,57 +163,73 @@ class App extends React.Component {
     });
   }
 
+  getImagesList(images) {
+    let imagesList = [];
+    let imgs = uniqBy(images, item => item.src);
+    imgs = imgs.filter(img => img.src && !img.src.includes('undefined'));
+    imgs.map(img => {
+      if (img.src.includes('\n')) {
+        const imgList = img.src.split(/\s+/).filter(i => i && i.includes('.'));
+        imgList.map(item => {
+          imagesList.push({
+            text: img.text,
+            src: item,
+          });
+        });
+      } else {
+        imagesList.push(img);
+      }
+    })
+    return imagesList;
+  }
+
   renderImages(images) {
     if (this.state.showType !== 'image') {
       return null;
     }
+    const imagesList = this.getImagesList(images);
 
-    let imgs = uniqBy(images, item => item.src);
+    let cards = imagesList.map((item, index) => {
+      const title = item.text;
+      const src = item.src;
 
-    imgs = imgs.filter(img => img.src && !~img.src.indexOf('undefined'));
-
-    let cards = imgs.map((img, index) => {
-      const title = img.text
-      const imgList = img.src.replace(/[\[\] "]/g,'').split('\n').filter(i => i); // handle multi image
-
-      return imgList.map((item) => {
-        const isVideo = item.endsWith('.webm');
-        return (
-          <Col key={guid()} span={isVideo ? 8 : 4} style={{ padding: '5px' }}>
-            <Card
-              hoverable
-              cover={
-                isVideo
-                ?
-                  <a href={item} target="_blank">
-                    <video
-                      data-index={index}
-                      className="video-item"
-                      src={item}
-                      data-title={title}
-                      controls
-                    />
-                  </a>
-                :
-                  <img
+      const isVideo = src.endsWith('.webm');
+      return (
+        <Col key={guid()} span={isVideo ? 8 : 4} style={{ padding: '5px' }}>
+          <Card
+            id="display-items"
+            hoverable
+            cover={
+              isVideo
+              ?
+                <a href={src} target="_blank">
+                  <video
                     data-index={index}
-                    className="picture-item"
-                    src={item}
+                    className="video-item display-item"
+                    src={src}
                     data-title={title}
+                    controls
                   />
-              }
-            >
-              <Meta
-                description={ title.split(' -- ') && title.split(' -- ').reverse()[0] }
-              />
-            </Card>
-          </Col>
-        );
-      });
+                </a>
+              :
+                <img
+                  data-index={index}
+                  className="picture-item display-item"
+                  src={src}
+                  data-title={title}
+                />
+            }
+          >
+            <Meta
+              description={ title.split(' -- ') && title.split(' -- ').reverse()[0] }
+            />
+          </Card>
+        </Col>
+      );
     });
     cards = flatten(cards);
 
-    if (!imgs.length) {
+    if (!imagesList.length) {
       cards = <Empty description={null} />;
     }
 
@@ -237,7 +250,6 @@ class App extends React.Component {
     const originSuites = this.state.output && this.state.output.suites;
     const showType = this.state.showType;
     const imgs = this.state.images;
-
     return (
       <Layout>
         <Affix>
