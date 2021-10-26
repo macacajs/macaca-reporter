@@ -6,10 +6,15 @@ import {
 } from 'react-syntax-highlighter/dist/styles';
 import remove from 'lodash/remove';
 import find from 'lodash/find';
+import { Table } from 'antd';
 import {
-  Table,
-  Icon
-} from 'antd';
+  CheckOutlined,
+  CloseOutlined,
+  PauseOutlined,
+  InboxOutlined,
+  ClockCircleOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons'
 import { autoWrapText, guid } from '@/common/helper';
 import './Suite.less';
 
@@ -120,13 +125,13 @@ export default class Suite extends React.Component {
 
   getCaseState(state) {
     if (state.pass) {
-      return <span style={{color:'#a5d86e'}}><Icon type="check" />passed</span>;
+      return <span style={{color:'#a5d86e'}}><CheckOutlined />passed</span>;
     } else if (state.fail) {
-      return <span style={{color:'#df5869'}}><Icon type="close" style={{ verticalAlign: 'sub' }} />failed</span>;
+      return <span style={{color:'#df5869'}}><CloseOutlined style={{ verticalAlign: 'sub' }} />failed</span>;
     } else if (state.pending) {
-      return <span style={{color:'rgb(234, 187, 56)'}}><Icon type="pause" />pending</span>;
+      return <span style={{color:'rgb(234, 187, 56)'}}><PauseOutlined />pending</span>;
     } else if (state.skipped) {
-      return <span style={{color:'#898989'}}><Icon type="inbox" />skipped</span>;
+      return <span style={{color:'#898989'}}><InboxOutlined />skipped</span>;
     }
   }
 
@@ -253,15 +258,15 @@ export default class Suite extends React.Component {
             <p>{ allStats.file }</p>
           </div>
           <ul>
-            <li><Icon type="clock-circle-o" /><span><span>Time:</span><span> { allStats.duration }ms</span></span></li>
-            <li><Icon type="inbox" /><span><span>Tests:</span><span> { allStats.totalTests }</span></span></li>
-            <li style={{color: '#a5d86e'}}><Icon type="check" /><span><span>Passes:</span><span> { allStats.totalPasses }</span></span></li>
-            <li style={{color: '#df5869'}}><Icon type="close" /><span><span>Failures:</span><span>  { allStats.totalFailures }</span></span></li>
-            <li style={{color: 'rgb(234, 187, 56)'}}><Icon type="pause" /><span><span>Pending:</span><span>  { allStats.totalPending }</span></span></li>
-            <li style={{color: '#898989'}}><Icon type="inbox" /><span><span>Skipped:</span><span>  { allStats.totalSkipped }</span></span></li>
+            <li><ClockCircleOutlined /><span><span>Time:</span><span> { allStats.duration }ms</span></span></li>
+            <li><InboxOutlined /><span><span>Tests:</span><span> { allStats.totalTests }</span></span></li>
+            <li style={{color: '#a5d86e'}}><CheckOutlined /><span><span>Passes:</span><span> { allStats.totalPasses }</span></span></li>
+            <li style={{color: '#df5869'}}><CloseOutlined /><span><span>Failures:</span><span>  { allStats.totalFailures }</span></span></li>
+            <li style={{color: 'rgb(234, 187, 56)'}}><PauseOutlined /><span><span>Pending:</span><span>  { allStats.totalPending }</span></span></li>
+            <li style={{color: '#898989'}}><InboxOutlined /><span><span>Skipped:</span><span>  { allStats.totalSkipped }</span></span></li>
             { percent >= 90
-              ? <li style={{color: '#39a854'}}><Icon type="pie-chart" /><span><span>rate:</span><span> { percent }%</span></span></li>
-              : <li style={{color: '#df5869'}}><Icon type="pie-chart" /><span><span>rate:</span><span>  { percent }%</span></span></li>
+              ? <li style={{color: '#39a854'}}><PieChartOutlined /><span><span>rate:</span><span> { percent }%</span></span></li>
+              : <li style={{color: '#df5869'}}><PieChartOutlined /><span><span>rate:</span><span>  { percent }%</span></span></li>
             }
           </ul>
         </div>

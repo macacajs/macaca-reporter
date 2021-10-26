@@ -7,7 +7,6 @@ import CircularJson from 'macaca-circular-json';
 import { openPhotoSwipe } from './components/PhotoSwipe';
 import {
   Affix,
-  Icon,
   Card,
   Col,
   Row,
@@ -16,6 +15,13 @@ import {
   Empty,
   BackTop,
 } from 'antd';
+import {
+  EyeOutlined,
+  ClusterOutlined,
+  VideoCameraOutlined,
+  TableOutlined,
+  QuestionCircleOutlined,
+} from '@ant-design/icons'
 import uniqBy from 'lodash/uniqBy';
 import flatten from 'lodash/flatten';
 import io from 'socket.io-client';
@@ -262,19 +268,19 @@ class App extends React.Component {
             <div className="case-show-panel">
               <Radio.Group className="case-show-radio" value={showType} onChange={this.handleRadioChange.bind(this)}>
                 <Radio.Button value="tree">
-                  <Icon type="eye-o" />
+                  <EyeOutlined />
                 </Radio.Button>
                 <Radio.Button value="mind">
-                  <Icon type="cluster" />
+                  <ClusterOutlined />
                 </Radio.Button>
                 <Radio.Button value="image">
-                  <Icon type="video-camera" />
+                  <VideoCameraOutlined />
                 </Radio.Button>
                 <Radio.Button value="text">
-                  <Icon type="table" />
+                  <TableOutlined />
                 </Radio.Button>
                 {this.state.hashError ? <Radio.Button value="error">
-                  <Icon type="question-circle" theme="twoTone" twoToneColor="red" />
+                  <QuestionCircleOutlined theme="twoTone" twoToneColor="red" />
                 </Radio.Button> : ''}
               </Radio.Group>
             </div>
