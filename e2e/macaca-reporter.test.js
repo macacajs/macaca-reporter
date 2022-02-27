@@ -35,20 +35,16 @@ describe('e2e/macaca-reporter.test.js', () => {
   it('page render should be ok', function() {
     return driver
       .getUrl(BASE_URL)
-      .startMediaRecorder(this)
-      .sleep(2000)
-      .stopMediaRecorder();
+      .sleep(2000);
   });
 
   it('mind render should be ok', function() {
     return driver
       .getUrl(BASE_URL)
-      .startMediaRecorder(this)
       .sleep(2000)
       .saveScreenshots(this)
       .elementByClassName('anticon-cluster')
       .click()
-      .sleep(2000)
-      .stopMediaRecorder();
+      .sleep(2000);
   });
 });
