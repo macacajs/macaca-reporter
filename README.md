@@ -32,6 +32,18 @@
 
 [Offcial Site](//macacajs.github.io/macaca-reporter)
 
+<!-- GITCONTRIBUTOR_START -->
+
+## Contributors
+
+|[<img src="https://avatars.githubusercontent.com/u/1011681?v=4" width="100px;"/><br/><sub><b>xudafeng</b></sub>](https://github.com/xudafeng)<br/>|[<img src="https://avatars.githubusercontent.com/u/11460601?v=4" width="100px;"/><br/><sub><b>zivyangll</b></sub>](https://github.com/zivyangll)<br/>|[<img src="https://avatars.githubusercontent.com/u/18617837?v=4" width="100px;"/><br/><sub><b>Stngle</b></sub>](https://github.com/Stngle)<br/>|[<img src="https://avatars.githubusercontent.com/u/1209810?v=4" width="100px;"/><br/><sub><b>paradite</b></sub>](https://github.com/paradite)<br/>|[<img src="https://avatars.githubusercontent.com/u/8198256?v=4" width="100px;"/><br/><sub><b>SamuelZhaoY</b></sub>](https://github.com/SamuelZhaoY)<br/>|[<img src="https://avatars.githubusercontent.com/u/30293087?v=4" width="100px;"/><br/><sub><b>Jodeee</b></sub>](https://github.com/Jodeee)<br/>|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+[<img src="https://avatars.githubusercontent.com/u/52845048?v=4" width="100px;"/><br/><sub><b>snapre</b></sub>](https://github.com/snapre)<br/>|[<img src="https://avatars.githubusercontent.com/u/24653016?v=4" width="100px;"/><br/><sub><b>amosnothing</b></sub>](https://github.com/amosnothing)<br/>|[<img src="https://avatars.githubusercontent.com/u/15245618?v=4" width="100px;"/><br/><sub><b>lsh382510118</b></sub>](https://github.com/lsh382510118)<br/>
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sun Feb 27 2022 19:35:25 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->
+
 ## Config
 
 Support custom JSON file name by ths config:
@@ -51,18 +63,6 @@ custom reporter directory with environment variable
 ```
 MACACA_REPORTER_DIR=customDirName
 ```
-
-<!-- GITCONTRIBUTOR_START -->
-
-## Contributors
-
-|[<img src="https://avatars.githubusercontent.com/u/1011681?v=4" width="100px;"/><br/><sub><b>xudafeng</b></sub>](https://github.com/xudafeng)<br/>|[<img src="https://avatars.githubusercontent.com/u/11460601?v=4" width="100px;"/><br/><sub><b>zivyangll</b></sub>](https://github.com/zivyangll)<br/>|[<img src="https://avatars.githubusercontent.com/u/18617837?v=4" width="100px;"/><br/><sub><b>Stngle</b></sub>](https://github.com/Stngle)<br/>|[<img src="https://avatars.githubusercontent.com/u/1209810?v=4" width="100px;"/><br/><sub><b>paradite</b></sub>](https://github.com/paradite)<br/>|[<img src="https://avatars.githubusercontent.com/u/8198256?v=4" width="100px;"/><br/><sub><b>SamuelZhaoY</b></sub>](https://github.com/SamuelZhaoY)<br/>|[<img src="https://avatars.githubusercontent.com/u/52845048?v=4" width="100px;"/><br/><sub><b>snapre</b></sub>](https://github.com/snapre)<br/>|
-| :---: | :---: | :---: | :---: | :---: | :---: |
-[<img src="https://avatars.githubusercontent.com/u/24653016?v=4" width="100px;"/><br/><sub><b>amosnothing</b></sub>](https://github.com/amosnothing)<br/>|[<img src="https://avatars.githubusercontent.com/u/15245618?v=4" width="100px;"/><br/><sub><b>lsh382510118</b></sub>](https://github.com/lsh382510118)<br/>
-
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed Oct 27 2021 00:52:21 GMT+0800`.
-
-<!-- GITCONTRIBUTOR_END -->
 
 ## Sample
 
