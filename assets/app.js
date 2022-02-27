@@ -286,7 +286,7 @@ class App extends React.Component {
             </div>
           </div>
           <Screen current={ current } />
-          { showType === 'mind' && <Mind suites={ originSuites.suites }/> }
+          { showType === 'mind' && <Mind suites={ originSuites.suites } title={ stats.title }/> }
           {
             showType !== 'mind' && originSuites.suites && originSuites.suites.map((suite, index) => {
               return (

@@ -42,6 +42,7 @@ export default class Mind extends React.Component {
   }
 
   componentDidMount() {
+    const title = this.props.title;
     var suites = this.props.suites;
     suites = this._transtromTree(suites);
     suites = this._deleteNullTest(suites);
@@ -62,7 +63,7 @@ export default class Mind extends React.Component {
 
     const mindSuite = {
       roots: [{
-        label: 'Macaca Mind',
+        label: title,
         children: adaptor(suites, true),
       }],
     };
