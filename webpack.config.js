@@ -71,4 +71,11 @@ module.exports = {
   ],
 
   devtool: 'source-map',
+
+  devServer: {
+    hot: true,
+    static: {
+      directory: __dirname,
+    },
+  },
 };
