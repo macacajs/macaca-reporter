@@ -19,7 +19,7 @@ module.exports = {
   },
   suites: suites || {},
   current: {
-    image: 'https://macacajs.github.io/macaca-logo/svg/monkey.svg',
+    image: 'https://macacajs.github.io/macaca-ecosystem/macaca-logo/svg/monkey.svg',
     list: [{
       title: 'info1 title',
       value: 'info1 content'

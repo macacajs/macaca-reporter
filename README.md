@@ -2,7 +2,7 @@
   <a href="//macacajs.github.io">
     <img
       alt="Macaca"
-      src="https://macacajs.github.io/macaca-logo/svg/monkey.svg"
+      src="https://macacajs.github.io/macaca-ecosystem/macaca-logo/svg/monkey.svg"
       width="200"
     />
   </a>
