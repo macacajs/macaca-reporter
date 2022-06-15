@@ -56,7 +56,22 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
         ],
-      }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: '[name]',
+            },
+          },
+          {
+            loader: 'svgo-loader',
+          },
+        ],
+        include: [path.resolve(__dirname, 'assets', 'icons')],
+      },
     ]
   },
   plugins: [

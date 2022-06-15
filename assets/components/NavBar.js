@@ -5,6 +5,7 @@ import {
   Progress
 } from 'antd';
 import './NavBar.less';
+import Icon from './Icon';
 import pkg from '../../package.json';
 
 export default class NavBar extends React.Component {
@@ -19,7 +20,11 @@ export default class NavBar extends React.Component {
       <ul className="head">
         <li>
           <a href={ pkg.homepage }>
-            <img className="page-logo" src="https://npmcdn.com/macaca-logo@latest/svg/monkey.svg" />
+            <Icon
+              style={{ marginTop: 16 }}
+              width={60}
+              type="monkey"
+            />
           </a>
         </li>
         <li>

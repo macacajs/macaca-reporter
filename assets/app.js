@@ -38,6 +38,11 @@ import NavBar from './components/NavBar';
 import Screen from './components/Screen';
 import pkg from '../package.json';
 
+const importAll = (r) => {
+  return r.keys().forEach(r);
+};
+importAll(require.context('./icons', false, /\.svg$/));
+
 window.images = [];
 import './app.less';
 let container;
