@@ -21,14 +21,12 @@ describe('e2e/macaca-reporter.test.js', () => {
 
   afterEach(function () {
     return driver
-      .coverage()
-      .saveScreenshots(this);
+      .coverage();
   });
 
   after(() => {
     return driver
       .openReporter(false)
-      .waitForVideosSave()
       .quit();
   });
 
