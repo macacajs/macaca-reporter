@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.6.1",
+  "version": "1.7.1",
   "description": "Reporter for mocha and other frameworks.",
   "keywords": [
     "macaca",
@@ -15,7 +15,8 @@
     "lib/*.html"
   ],
   "bin": {
-    "macaca-reporter": "./bin/macaca-reporter.js"
+    "macaca-reporter": "./bin/macaca-reporter.js",
+    "macaca-reporter-merge": "./bin/merge-reporter.js"
   },
   "main": "lib/macaca-reporter.js",
   "repository": {
@@ -23,7 +24,7 @@
     "url": "git@github.com:macacajs/macaca-reporter.git"
   },
   "dependencies": {
-    "commander": "^2.19.0",
+    "commander": "^9.3.0",
     "is-ci": "^2.0.0",
     "macaca-circular-json": "*",
     "macaca-coverage": "1",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
     "@antv/g6-editor": "~1.2.0",
+    "@babel/preset-react": "^7.17.12",
     "antd": "^4.16.13",
     "babel-core": "^6.25.0",
     "babel-eslint": "^8.0.1",
@@ -50,7 +52,11 @@
     "cross-env": "^5.1.1",
     "css-loader": "^0.14.5",
     "d3-tree": "^1.0.24",
-    "eslint": "^4.5.0",
+    "eslint": "7",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-egg": "^11.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.2.1",
     "flatted": "^2.0.0",
@@ -85,7 +91,7 @@
     "dev": "cross-env NODE_ENV=development webpack serve",
     "dev:e2e": "NODE_ENV=test npm run dev",
     "build": "cross-env NODE_ENV=production webpack",
-    "lint": "eslint --ext js,jsx --fix assets lib test e2e",
+    "lint": "eslint --ext js,jsx --fix lib test e2e",
     "prepublish": "npm run build",
     "test:e2e": "macaca run -d ./e2e --verbose -f mocha --f_options --recursive",
     "test:unit": "nyc --reporter=lcov --reporter=text mocha",

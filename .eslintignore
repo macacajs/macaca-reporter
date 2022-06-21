@@ -1,7 +1,5 @@
-**/.*
-**/node_modules
-**/dist
-**/assets
-**/reports
-**/test
-**/docs_dist
+node_modules
+dist
+reports
+docs_dist
+test/fixtures

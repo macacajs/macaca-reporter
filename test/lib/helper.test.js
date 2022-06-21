@@ -1,11 +1,8 @@
 'use strict';
 
-const fs = require('fs');
-const Flatted = require('flatted');
-
 const {
   getSuite,
-  stringify
+  stringify,
 } = require('../../lib/common/helper');
 
 const originData = require('../fixtures/origin');

@@ -1,3 +1,5 @@
+'use strict';
+
 const suites = require('./fixtures/suites');
 
 module.exports = {
@@ -15,20 +17,20 @@ module.exports = {
     skipped: 1,
     hasSkipped: false,
     duration: 0,
-    end: new Date()
+    end: new Date(),
   },
   suites: suites || {},
   current: {
     image: 'https://macacajs.github.io/macaca-ecosystem/macaca-logo/svg/monkey.svg',
     list: [{
       title: 'info1 title',
-      value: 'info1 content'
+      value: 'info1 content',
     }, {
       title: 'info2 title',
-      value: 'info2 content'
+      value: 'info2 content',
     }, {
       title: 'info3 title',
-      value: 'info3 content'
-    }]
-  }
+      value: 'info3 content',
+    }],
+  },
 };

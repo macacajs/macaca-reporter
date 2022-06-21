@@ -1,12 +1,12 @@
 'use strict';
 
 const {
-  webpackHelper
+  webpackHelper,
 } = require('macaca-wd');
 
 const {
   driver,
-  BASE_URL
+  BASE_URL,
 } = webpackHelper;
 
 describe('e2e/macaca-reporter.test.js', () => {
@@ -15,11 +15,11 @@ describe('e2e/macaca-reporter.test.js', () => {
       .initWindow({
         width: 800,
         height: 600,
-        deviceScaleFactor: 2
+        deviceScaleFactor: 2,
       });
   });
 
-  afterEach(function () {
+  afterEach(function() {
     return driver
       .coverage();
   });
