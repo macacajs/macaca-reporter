@@ -10,3 +10,4 @@ dist/
 docs_dist/
 *.sw*
 *.un~
+.idea

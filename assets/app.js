@@ -325,6 +325,31 @@ window._macaca_reportor = {
   _render: () => {
     console.log('reporter view render');
     ReactDom.render(<App />, container);
+
+    // onload 时如果有 scrollY url参数，则滚动到目标位置
+    const currUrl = new URL(window.location.href);
+    const scrollY = currUrl.searchParams.get('scrollY');
+    if (scrollY) {
+      console.log('found scrollY param, do scroll');
+      window.scrollTo({
+        top: Number.parseInt(scrollY),
+        behavior: 'smooth',
+      });
+    }
+    // 定时更新url中的scrollY值, 每5秒更新一次url
+    setInterval(() => {
+      console.log('update url interval');
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('scrollY') === null) {
+        url.searchParams.append('scrollY', `${window.scrollY}`);
+      } else if (url.searchParams.get('scrollY') === `${window.scrollY}`){
+        // 没有变化不更新
+        return;
+      } else {
+        url.searchParams.set('scrollY', `${window.scrollY}`);
+      }
+      window.history.replaceState({},'', url.href.replace(window.location.origin, ''));
+    }, 5E3);
   },
 
   _update: data => {

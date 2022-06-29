@@ -25,7 +25,6 @@ module.exports = {
     'no-plusplus': 0,
     'no-underscore-dangle': 0,
     'no-useless-escape': 0,
-    'no-unused-vars': ['error', { args: 'none' }],
     'no-prototype-builtins': 0,
     'max-len': 0,
     'class-methods-use-this': 0,
