@@ -288,14 +288,14 @@ export default class Suite extends React.Component {
               </SyntaxHighlighter>
               {this.getErrorInfo(record)}
               {this.getImages(record).map((src, index) => {
-                if(src.endsWith('.webm')) {
+                if (src.endsWith('.webm') || src.endsWith('.mp4')) {
                   return <video
                     key={index}
                     data-title={ record.fullTitle }
                     style={{height: '600px', width: 'auto'}}
                     src={ src } controls
                   />
-                } else{
+                } else {
                   return <img
                     key={index}
                     data-title={ record.fullTitle }

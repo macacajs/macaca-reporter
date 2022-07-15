@@ -204,7 +204,7 @@ class App extends React.Component {
       const title = item.text;
       const src = item.src;
 
-      const isVideo = src.endsWith('.webm');
+      const isVideo = src.endsWith('.webm') || src.endsWith('.mp4');
       return (
         <Col key={guid()} span={isVideo ? 8 : 4} style={{ padding: '5px' }}>
           <Card
