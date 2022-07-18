@@ -206,7 +206,7 @@ class App extends React.Component {
 
       const isVideo = src.endsWith('.webm') || src.endsWith('.mp4');
       return (
-        <Col key={guid()} span={isVideo ? 8 : 4} style={{ padding: '5px' }}>
+        <Col key={guid()} span={4} style={{ padding: '5px' }}>
           <Card
             id="display-items"
             hoverable

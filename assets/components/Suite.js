@@ -287,23 +287,25 @@ export default class Suite extends React.Component {
                 { record.code }
               </SyntaxHighlighter>
               {this.getErrorInfo(record)}
-              {this.getImages(record).map((src, index) => {
-                if (src.endsWith('.webm') || src.endsWith('.mp4')) {
-                  return <video
-                    key={index}
-                    data-title={ record.fullTitle }
-                    style={{height: '600px', width: 'auto'}}
-                    src={ src } controls
-                  />
-                } else {
-                  return <img
-                    key={index}
-                    data-title={ record.fullTitle }
-                    style={{height: '600px', width: 'auto'}}
-                    src={ src }
-                  />
-                }
-              })}
+              <div style={{ display: 'flex' }}>
+                {this.getImages(record).map((src, index) => {
+                  if (src.endsWith('.webm') || src.endsWith('.mp4')) {
+                    return <video
+                      key={index}
+                      data-title={ record.fullTitle }
+                      style={{height: '600px', width: 'auto'}}
+                      src={ src } controls
+                    />
+                  } else {
+                    return <img
+                      key={index}
+                      data-title={ record.fullTitle }
+                      style={{height: '600px', width: 'auto'}}
+                      src={ src }
+                    />
+                  }
+                })}
+              </div>
             </div>
           }
           dataSource={ allTest }
