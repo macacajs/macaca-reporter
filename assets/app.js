@@ -32,6 +32,7 @@ const Content = Layout.Content;
 const { Meta } = Card;
 
 import { guid } from '@/common/helper';
+import PromiseQueue from '@/common/promise-queue';
 import Mind from './components/Mind';
 import Suite from './components/Suite';
 import NavBar from './components/NavBar';
@@ -92,6 +93,20 @@ class App extends React.Component {
         })
       }
     }, 100);
+
+  }
+
+  startsVideoPreload() {
+    this.promiseQueue = this.promiseQueue || new PromiseQueue(3);
+    const videos = document.querySelectorAll('video[preload]');
+    videos.forEach(video => {
+      this.promiseQueue.add(() => new Promise(resolve => {
+        setTimeout(() => {
+          video.removeAttribute('preload');
+          resolve();
+        }, 500);
+      }));
+    });
   }
 
   addImageEvent() {
@@ -219,6 +234,7 @@ class App extends React.Component {
                     className="video-item display-item"
                     src={src}
                     data-title={title}
+                    preload="none"
                     controls
                   />
                 </a>
@@ -244,6 +260,7 @@ class App extends React.Component {
       cards = <Empty description={null} />;
     }
 
+    setTimeout(() => this.startsVideoPreload(), 100);
     return (
       <Row style={{
         width: '1280px',

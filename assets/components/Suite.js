@@ -18,6 +18,24 @@ import {
 import { autoWrapText, guid } from '@/common/helper';
 import './Suite.less';
 
+/**
+ * require('mocha').utils.stringify
+  [
+    "screenshots/1658287045044.png"
+    "screenshots/1658286967297-automation.mp4"
+  ]
+*/
+function resolveImageListFormat(data = '') {
+  if (!data) return null;
+  const list = data.split('\n');
+  return list.filter(item => {
+    if (!item.includes('.')) return true;
+    return item.trim().endsWith('.jpg')
+      || item.trim().endsWith('.png')
+      || item.trim().endsWith('.gif');
+  }).join('\n');
+}
+  
 export default class Suite extends React.Component {
 
   constructor(props) {
@@ -30,11 +48,9 @@ export default class Suite extends React.Component {
   }
 
   _getD3UnitData(item) {
-    const imgSrc = item.context && item.context.replace(/\"/g, '');
-    const isValidImg = imgSrc && imgSrc.toLowerCase() !== '[undefined]';
     return {
       text: autoWrapText(item.title),
-      image: isValidImg ? imgSrc : null
+      image: resolveImageListFormat(item.context),
     };
   }
 
@@ -294,7 +310,9 @@ export default class Suite extends React.Component {
                       key={index}
                       data-title={ record.fullTitle }
                       style={{height: '600px', width: 'auto'}}
-                      src={ src } controls
+                      src={ src } 
+                      preload="none"
+                      controls
                     />
                   } else {
                     return <img
