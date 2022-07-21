@@ -28,12 +28,13 @@ import './Suite.less';
 function resolveImageListFormat(data = '') {
   if (!data) return null;
   const list = data.split('\n');
-  return list.filter(item => {
-    if (!item.includes('.')) return true;
-    return item.trim().endsWith('.jpg')
-      || item.trim().endsWith('.png')
-      || item.trim().endsWith('.gif');
-  }).join('\n');
+  return list.map(item => {
+    if (!item.includes('.')) return item;
+    const isImage = item.includes('.jpg')
+      || item.includes('.png')
+      || item.includes('.gif');
+    if (isImage) return item.trim().replace(/"/g, '');
+  }).filter(item => item).join('\n');
 }
   
 export default class Suite extends React.Component {
