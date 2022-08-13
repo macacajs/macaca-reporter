@@ -2,7 +2,7 @@ import React from 'react';
 import D3Tree from 'd3-tree';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {
-  xcode
+  xcode,
 } from 'react-syntax-highlighter/dist/styles';
 import remove from 'lodash/remove';
 import find from 'lodash/find';
@@ -14,7 +14,7 @@ import {
   InboxOutlined,
   ClockCircleOutlined,
   PieChartOutlined,
-} from '@ant-design/icons'
+} from '@ant-design/icons';
 import { autoWrapText, guid } from '@/common/helper';
 import './Suite.less';
 
@@ -34,18 +34,17 @@ function resolveImageListFormat(data = '') {
       || item.includes('.png')
       || item.includes('.gif');
     if (isImage) return item.trim().replace(/"/g, '');
-  }).filter(item => item).join('\n');
+  }).filter(item => { return item; }).join('\n');
 }
-  
-export default class Suite extends React.Component {
 
+export default class Suite extends React.Component {
   constructor(props) {
     super(props);
     this.uid = guid();
 
     this.state = {
       expandKeys: [],
-    }
+    };
   }
 
   _getD3UnitData(item) {
@@ -62,7 +61,7 @@ export default class Suite extends React.Component {
     suite.tests.forEach(test => {
       test.id = guid();
       test.data = this._getD3UnitData(test);
-    })
+    });
     suite.children = suite.tests;
     return suite;
   }
@@ -78,7 +77,7 @@ export default class Suite extends React.Component {
       suite.id = guid();
       suite.data = this._getD3UnitData(suite);
 
-      if (suite.suites && suite.suites.length) {
+      if (suite?.suites?.length) {
         suite.children = suite.children.concat(suite.suites);
       }
 
@@ -103,13 +102,13 @@ export default class Suite extends React.Component {
   componentDidMount() {
     this.maxD3Height = 1;
     let suites;
-    const suite = this.props.suite;
+    const { suite } = this.props;
     const d3Data = {
       data: {
         image: null,
         text: autoWrapText(suite.title) || '',
       },
-    }
+    };
 
     if (suite.tests.length) {
       suites = this._transtromOneTree(suite);
@@ -123,7 +122,7 @@ export default class Suite extends React.Component {
     const selector = `.d3-tree-${this.uid}`;
 
     const d3tree = new D3Tree({
-      selector: selector,
+      selector,
       data: d3Data,
       width: document.querySelector('ul.head').clientWidth,
       height: this.maxD3Height * 300,
@@ -133,27 +132,27 @@ export default class Suite extends React.Component {
       imageMargin: 10,
       itemConfigHandle: () => {
         return {
-          isVertical: false
+          isVertical: false,
         };
-      }
+      },
     });
     d3tree.init();
   }
 
   getCaseState(state) {
     if (state.pass) {
-      return <span style={{color:'#a5d86e'}}><CheckOutlined />passed</span>;
+      return <span style={{ color: '#a5d86e' }}><CheckOutlined />passed</span>;
     } else if (state.fail) {
-      return <span style={{color:'#df5869'}}><CloseOutlined style={{ verticalAlign: 'sub' }} />failed</span>;
+      return <span style={{ color: '#df5869' }}><CloseOutlined style={{ verticalAlign: 'sub' }} />failed</span>;
     } else if (state.pending) {
-      return <span style={{color:'rgb(234, 187, 56)'}}><PauseOutlined />pending</span>;
+      return <span style={{ color: 'rgb(234, 187, 56)' }}><PauseOutlined />pending</span>;
     } else if (state.skipped) {
-      return <span style={{color:'#898989'}}><InboxOutlined />skipped</span>;
+      return <span style={{ color: '#898989' }}><InboxOutlined />skipped</span>;
     }
   }
 
   handleExpand(expanded, record) {
-    const expandKeys = [...this.state.expandKeys]
+    const expandKeys = [...this.state.expandKeys];
     if (!~expandKeys.indexOf(record.key)) {
       expandKeys.push(record.key);
     } else {
@@ -166,28 +165,29 @@ export default class Suite extends React.Component {
 
   getImages(record) {
     if (record.context && !~record.context.indexOf('undefined')) {
-      return record.context.replace(/[\[\] "]/g,'').split('\n').filter(i => i);
+      return record.context.replace(/[\[\] "]/g, '').split('\n').filter(i => { return i; });
     }
     return [];
   }
 
   getErrorInfo(record) {
-    const err = record.err;
+    const { err } = record;
     if (!err || !err.name) return null;
 
-    return <div className="suite-error-info">
-      <h1>{err.name}:</h1>
-      {err.expected && <p>expected: {err.expected}</p>}
-      {err.actual && <p>actual: {err.actual}</p>}
-      <p>{err.message}</p>
-      <p style={{whiteSpace: 'pre-wrap'}}>{err.stack}</p>
-    </div>
+    return (
+      <div className="suite-error-info">
+        <h1>{err.name}:</h1>
+        {err.expected && <p>expected: {err.expected}</p>}
+        {err.actual && <p>actual: {err.actual}</p>}
+        <p>{err.message}</p>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{err.stack}</p>
+      </div>
+    );
   }
 
   render() {
-
     const allTest = [];
-    const suite = this.props.suite;
+    const { suite } = this.props;
     const allStats = {
       totalFailures: 0,
       totalPasses: 0,
@@ -196,24 +196,24 @@ export default class Suite extends React.Component {
       totalTests: 0,
       duration: 0,
       title: suite.title,
-      file: suite.file
+      file: suite.file,
     };
 
     const handleTest = suite => {
       suite.tests.forEach(test => {
         // save test images
-        if (test.context && !find(images, item => item.src.replace(/"/g, '') === test.context.replace(/"/g, ''))) {
-          images.push({
-            src: test.context.replace(/"/g, ''),
-            text: test.fullTitle,
-          });
-        }
+        // if (test.context && !find(images, item => { return item.src.replace(/"/g, '') === test.context.replace(/"/g, ''); })) {
+        //   images.push({
+        //     src: test.context.replace(/"/g, ''),
+        //     text: test.fullTitle,
+        //   });
+        // }
 
         if ((this.props.showError && test.fail) || !this.props.showError) {
           test.key = test.uuid;
           test.state = this.getCaseState(test);
 
-          if (test.duration && !~(test.duration + '').indexOf('ms')) {
+          if (test.duration && !~(`${test.duration}`).indexOf('ms')) {
             test.duration = `${test.duration}ms`;
           }
 
@@ -232,7 +232,7 @@ export default class Suite extends React.Component {
           handleTest(child);
         });
       }
-    }
+    };
 
     handleTest(suite);
 
@@ -240,20 +240,20 @@ export default class Suite extends React.Component {
       {
         title: 'case',
         dataIndex: 'fullTitle',
-        key: 'fullTitle'
+        key: 'fullTitle',
       },
       {
         title: 'duration',
         dataIndex: 'duration',
         key: 'duration',
-        width: 88
+        width: 88,
       },
       {
         title: 'state',
         dataIndex: 'state',
         key: 'state',
-        width: 100
-      }
+        width: 100,
+      },
     ];
 
     let percent = 0;
@@ -261,8 +261,8 @@ export default class Suite extends React.Component {
       percent = parseInt(allStats.totalPasses / allStats.totalTests * 100, 10);
     }
 
-    const showSvg = this.props.showSvg;
-    let showSuite = this.props.showSuite;
+    const { showSvg } = this.props;
+    let { showSuite } = this.props;
     if (this.props.showError) {
       showSuite = allStats.totalFailures > 0;
     }
@@ -277,57 +277,62 @@ export default class Suite extends React.Component {
           <ul>
             <li><ClockCircleOutlined /><span><span>Time:</span><span> { allStats.duration }ms</span></span></li>
             <li><InboxOutlined /><span><span>Tests:</span><span> { allStats.totalTests }</span></span></li>
-            <li style={{color: '#a5d86e'}}><CheckOutlined /><span><span>Passes:</span><span> { allStats.totalPasses }</span></span></li>
-            <li style={{color: '#df5869'}}><CloseOutlined /><span><span>Failures:</span><span>  { allStats.totalFailures }</span></span></li>
-            <li style={{color: 'rgb(234, 187, 56)'}}><PauseOutlined /><span><span>Pending:</span><span>  { allStats.totalPending }</span></span></li>
-            <li style={{color: '#898989'}}><InboxOutlined /><span><span>Skipped:</span><span>  { allStats.totalSkipped }</span></span></li>
+            <li style={{ color: '#a5d86e' }}><CheckOutlined /><span><span>Passes:</span><span> { allStats.totalPasses }</span></span></li>
+            <li style={{ color: '#df5869' }}><CloseOutlined /><span><span>Failures:</span><span>  { allStats.totalFailures }</span></span></li>
+            <li style={{ color: 'rgb(234, 187, 56)' }}><PauseOutlined /><span><span>Pending:</span><span>  { allStats.totalPending }</span></span></li>
+            <li style={{ color: '#898989' }}><InboxOutlined /><span><span>Skipped:</span><span>  { allStats.totalSkipped }</span></span></li>
             { percent >= 90
-              ? <li style={{color: '#39a854'}}><PieChartOutlined /><span><span>rate:</span><span> { percent }%</span></span></li>
-              : <li style={{color: '#df5869'}}><PieChartOutlined /><span><span>rate:</span><span>  { percent }%</span></span></li>
-            }
+              ? <li style={{ color: '#39a854' }}><PieChartOutlined /><span><span>rate:</span><span> { percent }%</span></span></li>
+              : <li style={{ color: '#df5869' }}><PieChartOutlined /><span><span>rate:</span><span>  { percent }%</span></span></li>}
           </ul>
         </div>
 
-        <div style={{ display: showSvg ? 'block' : 'none' }} className={ `ani-box d3-tree-${this.uid}` }></div>
+        <div style={{ display: showSvg ? 'block' : 'none' }} className={`ani-box d3-tree-${this.uid}`}></div>
         <Table
-          pagination={ !this.props.showSvg }
-          columns={ columns }
-          expandedRowKeys={ this.state.expandKeys }
+          pagination={!this.props.showSvg}
+          columns={columns}
+          expandedRowKeys={this.state.expandKeys}
           onExpand={this.handleExpand.bind(this)}
-          expandedRowRender={ record =>
-            <div>
-              <SyntaxHighlighter
-                language='javascript'
-                showLineNumbers
-                style={ xcode }
-              >
-                { record.code }
-              </SyntaxHighlighter>
-              {this.getErrorInfo(record)}
-              <div style={{ display: 'flex' }}>
-                {this.getImages(record).map((src, index) => {
-                  if (src.endsWith('.webm') || src.endsWith('.mp4')) {
-                    return <video
-                      key={index}
-                      data-title={ record.fullTitle }
-                      style={{height: '600px', width: 'auto'}}
-                      src={ src } 
-                      preload="none"
-                      controls
-                    />
-                  } else {
-                    return <img
-                      key={index}
-                      data-title={ record.fullTitle }
-                      style={{height: '600px', width: 'auto'}}
-                      src={ src }
-                    />
-                  }
-                })}
+          expandedRowRender={record => {
+            return (
+              <div>
+                <SyntaxHighlighter
+                  language="javascript"
+                  showLineNumbers
+                  style={xcode}
+                >
+                  { record.code }
+                </SyntaxHighlighter>
+                {this.getErrorInfo(record)}
+                <div style={{ display: 'flex' }}>
+                  {this.getImages(record).map((src, index) => {
+                    if (src.endsWith('.webm') || src.endsWith('.mp4')) {
+                      return (
+                        <video
+                          key={index}
+                          data-title={record.fullTitle}
+                          style={{ height: '600px', width: 'auto' }}
+                          src={src}
+                          preload="none"
+                          controls
+                        />
+                      );
+                    } else {
+                      return (
+                        <img
+                          key={index}
+                          data-title={record.fullTitle}
+                          style={{ height: '600px', width: 'auto' }}
+                          src={src}
+                        />
+                      );
+                    }
+                  })}
+                </div>
               </div>
-            </div>
-          }
-          dataSource={ allTest }
+            );
+          }}
+          dataSource={allTest}
         />
       </div>
     );

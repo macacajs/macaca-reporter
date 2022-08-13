@@ -1,20 +1,17 @@
-'use strict';
-
 import React from 'react';
 import {
   Row,
-  Col
+  Col,
 } from 'antd';
 import './Screen.less';
 
 export default class NavBar extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
   render() {
-    const current = this.props.current;
+    const { current } = this.props;
 
     if (!current) {
       return null;
@@ -30,7 +27,7 @@ export default class NavBar extends React.Component {
           <Col span={16}>
             <div className="imagecon">
               <h1>Current Screen</h1>
-              <img src={ current.image } />
+              <img src={current.image} />
             </div>
           </Col>
           <Col span={6}>
@@ -39,7 +36,7 @@ export default class NavBar extends React.Component {
               {
                 current.list.map((item, key) => {
                   return (
-                    <p key={ key }>{ item.title }: { item.value }</p>
+                    <p key={key}>{ item.title }: { item.value }</p>
                   );
                 })
               }

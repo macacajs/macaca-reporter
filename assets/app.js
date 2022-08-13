@@ -1,10 +1,7 @@
-'use strict';
-
 import React from 'react';
 import ReactGA from 'react-ga';
 import ReactDom from 'react-dom';
 import CircularJson from 'macaca-circular-json';
-import { openPhotoSwipe } from './components/PhotoSwipe';
 import {
   Affix,
   Card,
@@ -21,15 +18,11 @@ import {
   VideoCameraOutlined,
   TableOutlined,
   QuestionCircleOutlined,
-} from '@ant-design/icons'
+} from '@ant-design/icons';
 import uniqBy from 'lodash/uniqBy';
 import flatten from 'lodash/flatten';
 import io from 'socket.io-client';
-
-const Header = Layout.Header;
-const Footer = Layout.Footer;
-const Content = Layout.Content;
-const { Meta } = Card;
+import { openPhotoSwipe } from './components/PhotoSwipe';
 
 import { guid } from '@/common/helper';
 import PromiseQueue from '@/common/promise-queue';
@@ -38,6 +31,12 @@ import Suite from './components/Suite';
 import NavBar from './components/NavBar';
 import Screen from './components/Screen';
 import pkg from '../package.json';
+import './app.less';
+
+const { Header } = Layout;
+const { Footer } = Layout;
+const { Content } = Layout;
+const { Meta } = Card;
 
 const importAll = (r) => {
   return r.keys().forEach(r);
@@ -45,7 +44,7 @@ const importAll = (r) => {
 importAll(require.context('./icons', false, /\.svg$/));
 
 window.images = [];
-import './app.less';
+
 let container;
 const dataAttr = 'data-output';
 const configAttr = 'config-output';
@@ -57,7 +56,6 @@ window.addEventListener('load', () => {
 });
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     container = document.querySelector(`#${pkg.name}`);
@@ -84,34 +82,34 @@ class App extends React.Component {
   componentDidMount() {
     this.addImageEvent();
 
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       if (window.images) {
-
-        clearInterval(timer)
+        clearInterval(timer);
         this.setState({
-          images: window.images
-        })
+          images: window.images,
+        });
       }
     }, 100);
-
   }
 
   startsVideoPreload() {
     this.promiseQueue = this.promiseQueue || new PromiseQueue(3);
     const videos = document.querySelectorAll('video[preload]');
     videos.forEach(video => {
-      this.promiseQueue.add(() => new Promise(resolve => {
-        setTimeout(() => {
-          video.removeAttribute('preload');
-          resolve();
-        }, 500);
-      }));
+      this.promiseQueue.add(() => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            video.removeAttribute('preload');
+            resolve();
+          }, 500);
+        });
+      });
     });
   }
 
   addImageEvent() {
     document.body.addEventListener('click', e => {
-      const target = e.target;
+      const { target } = e;
       const tagName = target.tagName.toUpperCase();
 
       const zoom = 0.6;
@@ -131,21 +129,20 @@ class App extends React.Component {
             pos = {
               w: screenWidth * zoom,
               h: screenWidth * zoom / ratio,
-            }
+            };
           } else {
             pos = {
               w: screenHeight * zoom * ratio,
               h: screenHeight * zoom,
-            }
+            };
           }
           const href = item.getAttribute('href');
           const titleContainer = item.parentNode.querySelector('text');
           const textArray = [].slice.call(titleContainer && titleContainer.querySelectorAll('tspan') || []);
-          const title = textArray.reduce((pre, current) => pre + current.innerHTML, '');
-          items.push(Object.assign({
-            src: href,
+          const title = textArray.reduce((pre, current) => { return pre + current.innerHTML; }, '');
+          items.push({ src: href,
             title,
-          }, pos));
+            ...pos });
         });
         openPhotoSwipe(items, index);
       } else if (tagName === 'IMG' && target.classList.contains('picture-item')) {
@@ -163,17 +160,16 @@ class App extends React.Component {
             pos = {
               w: screenWidth * zoom,
               h: screenWidth * zoom / ratio,
-            }
+            };
           } else {
             pos = {
               w: screenHeight * zoom * ratio,
               h: screenHeight * zoom,
-            }
+            };
           }
-          items.push(Object.assign({
-            src,
+          items.push({ src,
             title,
-          }, pos));
+            ...pos });
         });
         openPhotoSwipe(items, index);
       }
@@ -190,12 +186,12 @@ class App extends React.Component {
   }
 
   getImagesList(images) {
-    let imagesList = [];
-    let imgs = uniqBy(images, item => item.src);
-    imgs = imgs.filter(img => img.src && !img.src.includes('undefined'));
+    const imagesList = [];
+    let imgs = uniqBy(images, item => { return item.src; });
+    imgs = imgs.filter(img => { return img.src && !img.src.includes('undefined'); });
     imgs.map(img => {
       if (img.src.includes('\n')) {
-        const imgList = img.src.split(/\s+/).filter(i => i && i.includes('.'));
+        const imgList = img.src.split(/\s+/).filter(i => { return i && i.includes('.'); });
         imgList.map(item => {
           imagesList.push({
             text: img.text,
@@ -205,7 +201,7 @@ class App extends React.Component {
       } else {
         imagesList.push(img);
       }
-    })
+    });
     return imagesList;
   }
 
@@ -217,7 +213,7 @@ class App extends React.Component {
 
     let cards = imagesList.map((item, index) => {
       const title = item.text;
-      const src = item.src;
+      const { src } = item;
 
       const isVideo = src.endsWith('.webm') || src.endsWith('.mp4');
       return (
@@ -227,28 +223,30 @@ class App extends React.Component {
             hoverable
             cover={
               isVideo
-              ?
-                <a href={src} target="_blank">
-                  <video
+                ? (
+                  <a href={src} target="_blank">
+                    <video
+                      data-index={index}
+                      className="video-item display-item"
+                      src={src}
+                      data-title={title}
+                      preload="none"
+                      controls
+                    />
+                  </a>
+                )
+                : (
+                  <img
                     data-index={index}
-                    className="video-item display-item"
+                    className="picture-item display-item"
                     src={src}
                     data-title={title}
-                    preload="none"
-                    controls
                   />
-                </a>
-              :
-                <img
-                  data-index={index}
-                  className="picture-item display-item"
-                  src={src}
-                  data-title={title}
-                />
+                )
             }
           >
             <Meta
-              description={ title.split(' -- ') && title.split(' -- ').reverse()[0] }
+              description={title.split(' -- ') && title.split(' -- ').reverse()[0]}
             />
           </Card>
         </Col>
@@ -260,29 +258,29 @@ class App extends React.Component {
       cards = <Empty description={null} />;
     }
 
-    setTimeout(() => this.startsVideoPreload(), 100);
+    setTimeout(() => { return this.startsVideoPreload(); }, 100);
     return (
       <Row style={{
         width: '1280px',
-        margin: '30px auto'
-      }}>
+        margin: '30px auto',
+      }}
+      >
         {cards}
       </Row>
     );
   }
 
   render() {
-
     const stats = this.state.output && this.state.output.stats;
     const current = this.state.output && this.state.output.current;
     const originSuites = this.state.output && this.state.output.suites;
-    const showType = this.state.showType;
+    const { showType } = this.state;
     const imgs = this.state.images;
     return (
       <Layout>
         <Affix>
           <Header>
-            <NavBar stats={ stats }/>
+            <NavBar stats={stats} />
           </Header>
         </Affix>
         <Content>
@@ -301,25 +299,27 @@ class App extends React.Component {
                 <Radio.Button value="text">
                   <TableOutlined />
                 </Radio.Button>
-                {this.state.hashError ? <Radio.Button value="error">
-                  <QuestionCircleOutlined theme="twoTone" twoToneColor="red" />
-                </Radio.Button> : ''}
+                {this.state.hashError ? (
+                  <Radio.Button value="error">
+                    <QuestionCircleOutlined theme="twoTone" twoToneColor="red" />
+                  </Radio.Button>
+                ) : ''}
               </Radio.Group>
             </div>
           </div>
-          <Screen current={ current } />
-          { showType === 'mind' && <Mind suites={ originSuites.suites } title={ stats.title }/> }
+          <Screen current={current} />
+          { showType === 'mind' && <Mind suites={originSuites.suites} title={stats.title} /> }
           {
             showType !== 'mind' && originSuites.suites && originSuites.suites.map((suite, index) => {
               return (
                 <Suite
-                  showSuite={ showType !== 'image' }
-                  showSvg={ showType !== 'text' && showType !== 'error' }
-                  showError={ showType === 'error' }
-                  suite={ suite }
-                  key={ index }
+                  showSuite={showType !== 'image'}
+                  showSvg={showType !== 'text' && showType !== 'error'}
+                  showError={showType === 'error'}
+                  suite={suite}
+                  key={index}
                 />
-              )
+              );
             })
           }
           { this.renderImages(imgs) }
@@ -327,13 +327,13 @@ class App extends React.Component {
         {
           showType !== 'mind' && (
             <Footer>
-              &copy;&nbsp;<a href={ pkg.homepage }>Macaca Team</a> { new Date().getFullYear() }
+              &copy;&nbsp;<a href={pkg.homepage}>Macaca Team</a> { new Date().getFullYear() }
             </Footer>
           )
         }
         <BackTop />
       </Layout>
-    )
+    );
   }
 }
 
@@ -349,7 +349,7 @@ window._macaca_reportor = {
     if (scrollY) {
       console.log('found scrollY param, do scroll');
       window.scrollTo({
-        top: Number.parseInt(scrollY),
+        top: parseInt(scrollY, 10),
         behavior: 'smooth',
       });
     }
@@ -359,13 +359,13 @@ window._macaca_reportor = {
       const url = new URL(window.location.href);
       if (url.searchParams.get('scrollY') === null) {
         url.searchParams.append('scrollY', `${window.scrollY}`);
-      } else if (url.searchParams.get('scrollY') === `${window.scrollY}`){
+      } else if (url.searchParams.get('scrollY') === `${window.scrollY}`) {
         // 没有变化不更新
         return;
       } else {
         url.searchParams.set('scrollY', `${window.scrollY}`);
       }
-      window.history.replaceState({},'', url.href.replace(window.location.origin, ''));
+      window.history.replaceState({}, '', url.href.replace(window.location.origin, ''));
     }, 5E3);
   },
 
@@ -374,18 +374,18 @@ window._macaca_reportor = {
     container.innerHTML = '';
     container.setAttribute(dataAttr, data);
     ReactDom.render(<App />, container);
-  }
+  },
 
 };
 
 container = document.querySelector(`#${pkg.name}`);
 
 if (container.getAttribute(configAttr)) {
-  var config = CircularJson.parse(decodeURI(container.getAttribute(configAttr)));
+  const config = CircularJson.parse(decodeURI(container.getAttribute(configAttr)));
 
   if (config && config.socket) {
     const socket = io(config.socket.server);
-    socket.on('update reporter', function(data) {
+    socket.on('update reporter', (data) => {
       window._macaca_reportor._update(encodeURI(CircularJson.stringify(data)));
     });
 

@@ -59,7 +59,7 @@ export const openPhotoSwipe = (items, index) => {
 
   const options = {
     bgOpacity: 0.2,
-    index,    
+    index,
     history: false,
     focus: false,
     shareEl: false,
@@ -68,7 +68,7 @@ export const openPhotoSwipe = (items, index) => {
     clickToCloseNonZoomable: false,
     tapToClose: true,
   };
-  
+
   const gallery = new PhotoSwipe(pswpElement, UI, items, options);
   gallery.init();
 };

@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   extends: 'eslint-config-airbnb',
   parser: '@babel/eslint-parser',
@@ -56,6 +54,7 @@ module.exports = {
     'react/no-unstable-nested-components': 0,
     'react/no-unused-class-component-methods': 0,
     'react/jsx-no-bind': 0,
+    'react/prefer-stateless-function': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'jsx-a11y/anchor-has-content': 0,
@@ -72,6 +71,7 @@ module.exports = {
     'jsx-a11y/accessible-emoji': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'jsx-a11y/control-has-associated-label': 0,
+    'jsdoc/require-returns-description': 0,
     'no-await-in-loop': 0,
     'comma-dangle': [
       'error',
@@ -131,5 +131,8 @@ module.exports = {
     'semi-style': 0,
     'import/no-import-module-exports': 0,
     'import/extensions': 0,
+    'import/no-unresolved': 0,
+    'array-callback-return': 0,
+    'no-new': 0,
   },
 };

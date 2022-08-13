@@ -6,11 +6,10 @@ import { guid } from '@/common/helper';
 import './Mind.less';
 
 export default class Mind extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-    }
+    };
   }
 
   _transtromTree(suites) {
@@ -18,7 +17,7 @@ export default class Mind extends React.Component {
       suite.name = suite.title;
       suite.children = suite.tests;
       suite.id = guid();
-      if (suite.suites && suite.suites.length) {
+      if (suite?.suites?.length) {
         suite.children = suite.children.concat(suite.suites);
       }
       if (suite.children) {
@@ -42,8 +41,8 @@ export default class Mind extends React.Component {
   }
 
   componentDidMount() {
-    const title = this.props.title;
-    var suites = this.props.suites;
+    const { title } = this.props;
+    let { suites } = this.props;
     suites = this._transtromTree(suites);
     suites = this._deleteNullTest(suites);
 
@@ -54,7 +53,7 @@ export default class Mind extends React.Component {
         if (isRoot) {
           item.side = index > midNum ? 'left' : 'right';
         }
-        if (item.children && item.children.length) {
+        if (item?.children?.length) {
           item.children = adaptor(item.children);
         }
         return item;

@@ -1,25 +1,22 @@
-'use strict';
-
 import React from 'react';
 import {
-  Progress
+  Progress,
 } from 'antd';
 import './NavBar.less';
 import Icon from './Icon';
 import pkg from '../../package.json';
 
 export default class NavBar extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
   render() {
-    const stats = this.props.stats;
+    const { stats } = this.props;
     return (
       <ul className="head">
         <li>
-          <a href={ pkg.homepage }>
+          <a href={pkg.homepage}>
             <Icon
               style={{ marginTop: 16 }}
               width={60}
@@ -40,19 +37,19 @@ export default class NavBar extends React.Component {
         </li>
         <li>
           <h5>passes</h5>
-          <p style={{color: '#a5d86e'}}>{ stats.passes }</p>
+          <p style={{ color: '#a5d86e' }}>{ stats.passes }</p>
         </li>
         <li>
           <h5>failures</h5>
-          <p style={{color: '#df5869'}}>{ stats.failures }</p>
+          <p style={{ color: '#df5869' }}>{ stats.failures }</p>
         </li>
         <li>
           <h5>pending</h5>
-          <p style={{color: 'rgb(234, 187, 56)'}}>{ stats.pending }</p>
+          <p style={{ color: 'rgb(234, 187, 56)' }}>{ stats.pending }</p>
         </li>
         <li>
           <h5>skipped</h5>
-          <p style={{color: '#898989'}}>{ stats.skipped }</p>
+          <p style={{ color: '#898989' }}>{ stats.skipped }</p>
         </li>
         <li>
           <h5>duration</h5>
@@ -62,10 +59,11 @@ export default class NavBar extends React.Component {
           <div className="head-circle">
             <Progress
               type="circle"
-              percent={ stats.passPercent }
-              format={ percent => `${percent}%` }
-              status={ stats.passPercent >= 90 ? 'success' : 'exception' }
-              width={ 50 } />
+              percent={stats.passPercent}
+              format={percent => { return `${percent}%`; }}
+              status={stats.passPercent >= 90 ? 'success' : 'exception'}
+              width={50}
+            />
           </div>
         </li>
       </ul>
