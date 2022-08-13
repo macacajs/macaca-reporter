@@ -5,7 +5,6 @@ import {
   xcode,
 } from 'react-syntax-highlighter/dist/styles';
 import remove from 'lodash/remove';
-import find from 'lodash/find';
 import { Table } from 'antd';
 import {
   CheckOutlined,
@@ -202,13 +201,12 @@ export default class Suite extends React.Component {
     const handleTest = suite => {
       suite.tests.forEach(test => {
         // save test images
-        // if (test.context && !find(images, item => { return item.src.replace(/"/g, '') === test.context.replace(/"/g, ''); })) {
-        //   images.push({
-        //     src: test.context.replace(/"/g, ''),
-        //     text: test.fullTitle,
-        //   });
-        // }
-
+        if (test.context && !find(window.images, item => { return item.src.replace(/"/g, '') === test.context.replace(/"/g, ''); })) {
+          window.images.push({
+            src: test.context.replace(/"/g, ''),
+            text: test.fullTitle,
+          });
+        }
         if ((this.props.showError && test.fail) || !this.props.showError) {
           test.key = test.uuid;
           test.state = this.getCaseState(test);

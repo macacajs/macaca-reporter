@@ -40,7 +40,7 @@
 | :---: | :---: | :---: | :---: | :---: | :---: |
 [<img src="https://avatars.githubusercontent.com/u/30293087?v=4" width="100px;"/><br/><sub><b>Jodeee</b></sub>](https://github.com/Jodeee)<br/>|[<img src="https://avatars.githubusercontent.com/u/24653016?v=4" width="100px;"/><br/><sub><b>amosnothing</b></sub>](https://github.com/amosnothing)<br/>|[<img src="https://avatars.githubusercontent.com/u/15245618?v=4" width="100px;"/><br/><sub><b>lsh382510118</b></sub>](https://github.com/lsh382510118)<br/>|[<img src="https://avatars.githubusercontent.com/u/10104168?v=4" width="100px;"/><br/><sub><b>yihuineng</b></sub>](https://github.com/yihuineng)<br/>
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Thu Jul 21 2022 13:56:25 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Aug 13 2022 21:07:08 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 

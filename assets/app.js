@@ -271,9 +271,9 @@ class App extends React.Component {
   }
 
   render() {
-    const stats = this.state.output && this.state.output.stats;
-    const current = this.state.output && this.state.output.current;
-    const originSuites = this.state.output && this.state.output.suites;
+    const stats = this.state?.output?.stats;
+    const current = this.state?.output?.current;
+    const originSuites = this.state?.output?.suites;
     const { showType } = this.state;
     const imgs = this.state.images;
     return (
