@@ -13,7 +13,8 @@ function updateTemplateHtml(configStr, dataStr) {
   node.setAttribute('config-output', configStr);
   node.setAttribute('data-output', dataStr);
   const res = dom.serialize();
-  fs.writeFileSync('./index.html', res, 'utf-8');
+  fs.writeFileSync('./debug.html', res, 'utf-8');
+  console.log('open: %s', 'http://localhost:8080/debug.html');
 }
 
 async function main() {

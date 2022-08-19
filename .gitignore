@@ -7,6 +7,7 @@ screenshots/
 build/
 dist/
 docs_dist/
+debug.html
 *.sw*
 *.un~
 .idea

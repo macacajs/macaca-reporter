@@ -245,13 +245,6 @@ export default class Suite extends React.Component {
 
     const handleTest = suite => {
       suite.tests.forEach(test => {
-        // save test images
-        if (test.context && !find(window.images, item => { return item.src.replace(/"/g, '') === test.context.replace(/"/g, ''); })) {
-          window.images.push({
-            src: test.context.replace(/"/g, ''),
-            text: test.fullTitle,
-          });
-        }
         if ((this.props.showError && test.fail) || !this.props.showError) {
           test.key = test.uuid;
           test.state = this.getCaseState(test);
