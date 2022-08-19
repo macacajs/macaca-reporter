@@ -24,7 +24,7 @@ import flatten from 'lodash/flatten';
 import io from 'socket.io-client';
 import { openPhotoSwipe } from './components/PhotoSwipe';
 
-import { guid } from '@/common/helper';
+import { guid, validImage, validVideo } from '@/common/helper';
 import PromiseQueue from '@/common/promise-queue';
 import Mind from './components/Mind';
 import Suite from './components/Suite';
@@ -42,8 +42,6 @@ const importAll = (r) => {
   return r.keys().forEach(r);
 };
 importAll(require.context('./icons', false, /\.svg$/));
-
-window.images = [];
 
 let container;
 const dataAttr = 'data-output';
@@ -75,21 +73,11 @@ class App extends React.Component {
       output,
       showType,
       hashError: output.stats.failures,
-      images: [],
     };
   }
 
   componentDidMount() {
     this.addImageEvent();
-
-    const timer = setInterval(() => {
-      if (window.images) {
-        clearInterval(timer);
-        this.setState({
-          images: window.images,
-        });
-      }
-    }, 100);
   }
 
   startsVideoPreload() {
@@ -185,37 +173,36 @@ class App extends React.Component {
     });
   }
 
-  getImagesList(images) {
-    const imagesList = [];
-    let imgs = uniqBy(images, item => { return item.src; });
-    imgs = imgs.filter(img => { return img.src && !img.src.includes('undefined'); });
-    imgs.map(img => {
-      if (img.src.includes('\n')) {
-        const imgList = img.src.split(/\s+/).filter(i => { return i && i.includes('.'); });
-        imgList.map(item => {
-          imagesList.push({
-            text: img.text,
-            src: item,
-          });
-        });
-      } else {
-        imagesList.push(img);
-      }
+  handleImageList(allTest) {
+    const allImages = [];
+    let _tests = uniqBy(allTest, it => { return it.context; });
+    _tests = _tests.filter(it => { return it.context && !it.context.includes('undefined'); });
+    _tests.map(it => {
+      const imgList = it.context.replace(/[\[\] "]/g, '').split('\n').filter(i => {
+        return i;
+      });
+      allImages.push(...(imgList.map(it => {
+        return {
+          src: it,
+          text: '',
+        };
+      })));
     });
-    return imagesList;
+    return allImages;
   }
 
-  renderImages(images) {
+  renderImages(allTest) {
     if (this.state.showType !== 'image') {
       return null;
     }
-    const imagesList = this.getImagesList(images);
+    const mediasList = this.handleImageList(allTest);
+    const videosList = mediasList.filter(it => { return validVideo(it.src); });
+    const imagesList = mediasList.filter(it => { return validImage(it.src); });
 
-    let cards = imagesList.map((item, index) => {
+    let cards = [...videosList, ...imagesList].map((item, index) => {
       const title = item.text;
       const { src } = item;
-
-      const isVideo = src.endsWith('.webm') || src.endsWith('.mp4');
+      const isVideo = validVideo(src);
       return (
         <Col key={guid()} span={4} style={{ padding: '5px' }}>
           <Card
@@ -241,6 +228,7 @@ class App extends React.Component {
                     className="picture-item display-item"
                     src={src}
                     data-title={title}
+                    alt={title}
                   />
                 )
             }
@@ -254,7 +242,7 @@ class App extends React.Component {
     });
     cards = flatten(cards);
 
-    if (!imagesList.length) {
+    if (!mediasList.length) {
       cards = <Empty description={null} />;
     }
 
@@ -275,7 +263,13 @@ class App extends React.Component {
     const current = this.state?.output?.current;
     const originSuites = this.state?.output?.suites;
     const { showType } = this.state;
-    const imgs = this.state.images;
+    // 获取 images
+    const allTest = [];
+    originSuites.suites.forEach(i1 => {
+      i1.tests.forEach(i2 => {
+        allTest.push(i2);
+      });
+    });
     return (
       <Layout>
         <Affix>
@@ -322,7 +316,7 @@ class App extends React.Component {
               );
             })
           }
-          { this.renderImages(imgs) }
+          { this.renderImages(allTest) }
         </Content>
         {
           showType !== 'mind' && (

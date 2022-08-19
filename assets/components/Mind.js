@@ -12,7 +12,7 @@ export default class Mind extends React.Component {
     };
   }
 
-  _transtromTree(suites) {
+  _transformTree(suites) {
     suites.forEach((suite) => {
       suite.name = suite.title;
       suite.children = suite.tests;
@@ -21,7 +21,7 @@ export default class Mind extends React.Component {
         suite.children = suite.children.concat(suite.suites);
       }
       if (suite.children) {
-        this._transtromTree(suite.children);
+        this._transformTree(suite.children);
       }
     });
     return suites;
@@ -43,7 +43,7 @@ export default class Mind extends React.Component {
   componentDidMount() {
     const { title } = this.props;
     let { suites } = this.props;
-    suites = this._transtromTree(suites);
+    suites = this._transformTree(suites);
     suites = this._deleteNullTest(suites);
 
     const adaptor = (listData, isRoot) => {
