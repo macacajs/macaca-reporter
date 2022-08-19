@@ -14,26 +14,25 @@ import {
   ClockCircleOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
-import { autoWrapText, guid } from '@/common/helper';
+import { autoWrapText, guid, validImage, validVideo } from '@/common/helper';
 import './Suite.less';
 
 /**
  * require('mocha').utils.stringify
-  [
-    "screenshots/1658287045044.png"
-    "screenshots/1658286967297-automation.mp4"
-  ]
-*/
+ [
+ "screenshots/1658287045044.png"
+ "screenshots/1658286967297-automation.mp4"
+ ]
+ */
 function resolveImageListFormat(data = '') {
   if (!data) return null;
   const list = data.split('\n');
   return list.map(item => {
     if (!item.includes('.')) return item;
-    const isImage = item.includes('.jpg')
-      || item.includes('.png')
-      || item.includes('.gif');
-    if (isImage) return item.trim().replace(/"/g, '');
-  }).filter(item => { return item; }).join('\n');
+    if (validImage(item)) return item.trim().replace(/"/g, '');
+  }).filter(item => {
+    return item;
+  }).join('\n');
 }
 
 export default class Suite extends React.Component {
@@ -54,7 +53,7 @@ export default class Suite extends React.Component {
   }
 
   // handle single-layer cases: describle -> it
-  _transtromOneTree(suite) {
+  _transformOneTree(suite) {
     suite.name = suite.title;
     this.maxD3Height = suite.tests.length;
     suite.tests.forEach(test => {
@@ -66,7 +65,7 @@ export default class Suite extends React.Component {
   }
 
   // handle muti-layer cases: describle -> describl -> it
-  _transtromTree(suites) {
+  _transformTree(suites) {
     if (suites.length > this.maxD3Height) {
       this.maxD3Height = suites.length;
     }
@@ -81,7 +80,7 @@ export default class Suite extends React.Component {
       }
 
       if (suite.children) {
-        this._transtromTree(suite.children);
+        this._transformTree(suite.children);
       }
     });
     return suites;
@@ -89,8 +88,8 @@ export default class Suite extends React.Component {
 
   _deleteNullTest(suites) {
     remove(suites, suite => {
-      const willDelete = suite.children && !suite.children.length && !suite.suites.length;
-      return willDelete;
+      // willDelete
+      return suite.children && !suite.children.length && !suite.suites.length;
     });
     suites.forEach(suite => {
       this._deleteNullTest(suite.suites);
@@ -110,10 +109,10 @@ export default class Suite extends React.Component {
     };
 
     if (suite.tests.length) {
-      suites = this._transtromOneTree(suite);
+      suites = this._transformOneTree(suite);
       d3Data.children = suites.children;
     } else {
-      suites = this._transtromTree(suite.suites);
+      suites = this._transformTree(suite.suites);
       d3Data.children = suites;
       suites = this._deleteNullTest(suites);
     }
@@ -162,14 +161,19 @@ export default class Suite extends React.Component {
     });
   }
 
-  getImages(record) {
-    if (record.context && !~record.context.indexOf('undefined')) {
-      return record.context.replace(/[\[\] "]/g, '').split('\n').filter(i => { return i; });
+  getImages(record = {}) {
+    if (record.context && !record.context.includes('undefined')) {
+      const files = record.context.replace(/[\[\] "]/g, '').split('\n').filter(i => {
+        return i;
+      });
+      const videos = files.filter(validVideo);
+      const images = files.filter(validImage);
+      return [...videos, ...images];
     }
     return [];
   }
 
-  getErrorInfo(record) {
+  getErrorInfo(record = {}) {
     const { err } = record;
     if (!err || !err.name) return null;
 
@@ -180,6 +184,47 @@ export default class Suite extends React.Component {
         {err.actual && <p>actual: {err.actual}</p>}
         <p>{err.message}</p>
         <p style={{ whiteSpace: 'pre-wrap' }}>{err.stack}</p>
+      </div>
+    );
+  }
+
+  rowRender = (record) => {
+    return (
+      <div>
+        <SyntaxHighlighter
+          language="javascript"
+          showLineNumbers
+          style={xcode}
+        >
+          {record.code}
+        </SyntaxHighlighter>
+        {this.getErrorInfo(record)}
+        <div style={{ display: 'block' }}>
+          {this.getImages(record).map((src, index) => {
+            if (validVideo(src)) {
+              return (
+                <video
+                  key={index}
+                  data-title={record.fullTitle}
+                  style={{ height: '600px', width: 'auto' }}
+                  src={src}
+                  preload="none"
+                  controls
+                />
+              );
+            } else {
+              return (
+                <img
+                  key={index}
+                  data-title={record.fullTitle}
+                  style={{ height: '600px', width: 'auto' }}
+                  src={src}
+                  alt={record.fullTitle}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
     );
   }
@@ -211,7 +256,7 @@ export default class Suite extends React.Component {
           test.key = test.uuid;
           test.state = this.getCaseState(test);
 
-          if (test.duration && !~(`${test.duration}`).indexOf('ms')) {
+          if (test.duration && !`${test.duration}`.includes('ms')) {
             test.duration = `${test.duration}ms`;
           }
 
@@ -256,7 +301,7 @@ export default class Suite extends React.Component {
 
     let percent = 0;
     if (allStats.totalTests > 0) {
-      percent = parseInt(allStats.totalPasses / allStats.totalTests * 100, 10);
+      percent = Math.floor(allStats.totalPasses / allStats.totalTests * 100);
     }
 
     const { showSvg } = this.props;
@@ -269,19 +314,36 @@ export default class Suite extends React.Component {
       <div className="suite" style={{ display: showSuite ? 'block' : 'none' }}>
         <div className="file-head">
           <div className="file-head-top">
-            <h1>{ allStats.title }</h1>
-            <p>{ allStats.file }</p>
+            <h1>{allStats.title}</h1>
+            <p>{allStats.file}</p>
           </div>
           <ul>
-            <li><ClockCircleOutlined /><span><span>Time:</span><span> { allStats.duration }ms</span></span></li>
-            <li><InboxOutlined /><span><span>Tests:</span><span> { allStats.totalTests }</span></span></li>
-            <li style={{ color: '#a5d86e' }}><CheckOutlined /><span><span>Passes:</span><span> { allStats.totalPasses }</span></span></li>
-            <li style={{ color: '#df5869' }}><CloseOutlined /><span><span>Failures:</span><span>  { allStats.totalFailures }</span></span></li>
-            <li style={{ color: 'rgb(234, 187, 56)' }}><PauseOutlined /><span><span>Pending:</span><span>  { allStats.totalPending }</span></span></li>
-            <li style={{ color: '#898989' }}><InboxOutlined /><span><span>Skipped:</span><span>  { allStats.totalSkipped }</span></span></li>
-            { percent >= 90
-              ? <li style={{ color: '#39a854' }}><PieChartOutlined /><span><span>rate:</span><span> { percent }%</span></span></li>
-              : <li style={{ color: '#df5869' }}><PieChartOutlined /><span><span>rate:</span><span>  { percent }%</span></span></li>}
+            <li><ClockCircleOutlined /><span><span>Time:</span><span> {allStats.duration}ms</span></span>
+            </li>
+            <li><InboxOutlined /><span><span>Tests:</span><span> {allStats.totalTests}</span></span></li>
+            <li style={{ color: '#a5d86e' }}>
+              <CheckOutlined /><span><span>Passes:</span><span> {allStats.totalPasses}</span></span>
+            </li>
+            <li style={{ color: '#df5869' }}>
+              <CloseOutlined /><span><span>Failures:</span><span>  {allStats.totalFailures}</span></span>
+            </li>
+            <li style={{ color: 'rgb(234, 187, 56)' }}>
+              <PauseOutlined /><span><span>Pending:</span><span>  {allStats.totalPending}</span></span>
+            </li>
+            <li style={{ color: '#898989' }}>
+              <InboxOutlined /><span><span>Skipped:</span><span>  {allStats.totalSkipped}</span></span>
+            </li>
+            {percent >= 90
+              ? (
+                <li style={{ color: '#39a854' }}>
+                  <PieChartOutlined /><span><span>rate:</span><span> {percent}%</span></span>
+                </li>
+              )
+              : (
+                <li style={{ color: '#df5869' }}>
+                  <PieChartOutlined /><span><span>rate:</span><span>  {percent}%</span></span>
+                </li>
+              )}
           </ul>
         </div>
 
@@ -289,46 +351,10 @@ export default class Suite extends React.Component {
         <Table
           pagination={!this.props.showSvg}
           columns={columns}
-          expandedRowKeys={this.state.expandKeys}
-          onExpand={this.handleExpand.bind(this)}
-          expandedRowRender={record => {
-            return (
-              <div>
-                <SyntaxHighlighter
-                  language="javascript"
-                  showLineNumbers
-                  style={xcode}
-                >
-                  { record.code }
-                </SyntaxHighlighter>
-                {this.getErrorInfo(record)}
-                <div style={{ display: 'flex' }}>
-                  {this.getImages(record).map((src, index) => {
-                    if (src.endsWith('.webm') || src.endsWith('.mp4')) {
-                      return (
-                        <video
-                          key={index}
-                          data-title={record.fullTitle}
-                          style={{ height: '600px', width: 'auto' }}
-                          src={src}
-                          preload="none"
-                          controls
-                        />
-                      );
-                    } else {
-                      return (
-                        <img
-                          key={index}
-                          data-title={record.fullTitle}
-                          style={{ height: '600px', width: 'auto' }}
-                          src={src}
-                        />
-                      );
-                    }
-                  })}
-                </div>
-              </div>
-            );
+          expandable={{
+            expandedRowKeys: this.state.expandKeys,
+            onExpand: this.handleExpand.bind(this),
+            expandedRowRender: this.rowRender,
           }}
           dataSource={allTest}
         />

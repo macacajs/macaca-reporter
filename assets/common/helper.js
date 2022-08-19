@@ -26,3 +26,11 @@ export const autoWrapText = text => {
   }
   return res;
 };
+
+export const validVideo = (file) => {
+  return file.endsWith('.webm') || file.endsWith('.mp4');
+};
+
+export const validImage = (file) => {
+  return file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.gif');
+};
