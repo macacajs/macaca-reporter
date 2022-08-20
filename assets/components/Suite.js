@@ -28,8 +28,9 @@ function resolveImageListFormat(data = '') {
   if (!data) return null;
   const list = data.split('\n');
   return list.map(item => {
-    if (!item.includes('.')) return item;
-    if (validImage(item)) return item.trim().replace(/"/g, '');
+    if (validImage(item)) {
+      return item.trim().replace(/"/g, '');
+    }
   }).filter(item => {
     return item;
   }).join('\n');
@@ -52,7 +53,7 @@ export default class Suite extends React.Component {
     };
   }
 
-  // handle single-layer cases: describle -> it
+  // handle single-layer cases: describe -> it
   _transformOneTree(suite) {
     suite.name = suite.title;
     this.maxD3Height = suite.tests.length;
@@ -64,12 +65,12 @@ export default class Suite extends React.Component {
     return suite;
   }
 
-  // handle muti-layer cases: describle -> describl -> it
-  _transformTree(suites) {
+  // handle multi-layer cases: describe -> describe -> it
+  _transformTree(suites = []) {
     if (suites.length > this.maxD3Height) {
       this.maxD3Height = suites.length;
     }
-    suites.forEach((suite, index) => {
+    suites.forEach((suite) => {
       suite.name = suite.title;
       suite.children = suite.tests;
       suite.id = guid();

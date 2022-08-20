@@ -12,7 +12,7 @@ export default class Mind extends React.Component {
     };
   }
 
-  _transformTree(suites) {
+  _transformTree(suites = []) {
     suites.forEach((suite) => {
       suite.name = suite.title;
       suite.children = suite.tests;
