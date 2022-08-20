@@ -97,7 +97,7 @@
     "dev": "cross-env NODE_ENV=development webpack serve",
     "dev:e2e": "NODE_ENV=test npm run dev",
     "build": "cross-env NODE_ENV=production webpack",
-    "lint": "eslint --ext js,jsx --fix lib test e2e assets",
+    "lint": "eslint --ext js,jsx --fix",
     "prepublishOnly": "npm run build",
     "test:e2e": "macaca run -d ./e2e --verbose -f mocha --f_options --recursive",
     "test:unit": "nyc --reporter=lcov --reporter=text mocha",
