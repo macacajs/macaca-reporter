@@ -11,19 +11,20 @@ const assetsPath = path.join(__dirname, 'assets');
 module.exports = {
 
   entry: {
-    [pkg.name]: path.join(assetsPath, 'app')
+    [pkg.name]: path.join(assetsPath, 'app'),
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
-    filename: '[name].js'
+    filename: '[name].js',
   },
 
   resolve: {
     alias: {
       '@': assetsPath,
     },
+    extensions: [ '.js', '.jsx' ],
   },
 
   module: {
@@ -39,22 +40,62 @@ module.exports = {
         exclude: /node_modules/,
       }, {
         test: /\.less$/,
+        exclude(filePath) {
+          return filePath.endsWith('.module.less');
+        },
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
           },
           {
             loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                math: 'always',
+              },
+            },
           },
         ],
-      }, {
-        test: /\.css$/,
+      },
+      {
+        test: /\.module\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              },
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                math: 'always',
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
         ],
       },
       {
@@ -70,19 +111,21 @@ module.exports = {
             loader: 'svgo-loader',
           },
         ],
-        include: [path.resolve(__dirname, 'assets', 'icons')],
+        include: [
+          path.resolve(__dirname, 'assets', 'icons'),
+        ],
       },
-    ]
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[id].css',
     }),
     new webpack.DefinePlugin({
       'process.env.VERSION': JSON.stringify(pkg.version),
-      'process.env.traceFragment': traceFragment
-    })
+      'process.env.traceFragment': traceFragment,
+    }),
   ],
 
   devtool: 'source-map',
