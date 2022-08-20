@@ -24,7 +24,7 @@ import flatten from 'lodash/flatten';
 import io from 'socket.io-client';
 import { openPhotoSwipe } from './components/PhotoSwipe';
 
-import { guid, validImage, validVideo } from '@/common/helper';
+import { guid, validVideo } from '@/common/helper';
 import PromiseQueue from '@/common/promise-queue';
 import Mind from './components/Mind';
 import Suite from './components/Suite';
