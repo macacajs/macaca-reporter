@@ -71,6 +71,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.4",
+    "urllib": "^3.1.0",
     "macaca-cli": "2",
     "macaca-ecosystem": "*",
     "macaca-playwright": "1",

@@ -28,9 +28,9 @@ export const autoWrapText = text => {
 };
 
 export const validVideo = (file) => {
-  return file.endsWith('.webm') || file.endsWith('.mp4');
+  return file.includes('.webm') || file.includes('.mp4');
 };
 
 export const validImage = (file) => {
-  return file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.gif');
+  return file.includes('.png') || file.includes('.jpg') || file.includes('.gif');
 };

@@ -191,15 +191,13 @@ class App extends React.Component {
     return allImages;
   }
 
+  // 图片、录像视图
   renderImages(allTest) {
     if (this.state.showType !== 'image') {
       return null;
     }
     const mediasList = this.handleImageList(allTest);
-    const videosList = mediasList.filter(it => { return validVideo(it.src); });
-    const imagesList = mediasList.filter(it => { return validImage(it.src); });
-
-    let cards = [...videosList, ...imagesList].map((item, index) => {
+    let cards = mediasList.map((item, index) => {
       const title = item.text;
       const { src } = item;
       const isVideo = validVideo(src);
@@ -258,18 +256,31 @@ class App extends React.Component {
     );
   }
 
+  /**
+   * 递归获取所有测试用例
+   */
+  getAllTests = (suites) => {
+    const tests = [];
+    if (suites.length > 0) {
+      suites.forEach(s => {
+        if (s.tests.length > 0) {
+          tests.push(...s.tests);
+        }
+        if (s.suites.length > 0) {
+          tests.push(...this.getAllTests(s.suites));
+        }
+      });
+    }
+    return tests;
+  }
+
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
     const originSuites = this.state?.output?.suites;
     const { showType } = this.state;
     // 获取 images
-    const allTest = [];
-    originSuites.suites.forEach(i1 => {
-      i1.tests.forEach(i2 => {
-        allTest.push(i2);
-      });
-    });
+    const allTest = this.getAllTests(originSuites.suites);
     return (
       <Layout>
         <Affix>
