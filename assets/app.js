@@ -259,7 +259,7 @@ class App extends React.Component {
   /**
    * 递归获取所有测试用例
    */
-  getAllTests = (suites) => {
+  getAllTests = (suites = []) => {
     const tests = [];
     if (suites.length > 0) {
       suites.forEach(s => {
