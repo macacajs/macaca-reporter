@@ -56,7 +56,6 @@ export const openPhotoSwipe = (items, index) => {
     document.body.appendChild(div);
     pswpElement = document.querySelector('.pswp');
   }
-
   const options = {
     bgOpacity: 0.2,
     index,
