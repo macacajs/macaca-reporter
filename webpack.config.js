@@ -20,7 +20,7 @@ function getDevServerProxy() {
 module.exports = {
 
   entry: {
-    [pkg.name]: path.join(assetsPath, 'app'),
+    [pkg.name]: path.join(assetsPath, 'App'),
   },
 
   output: {

@@ -31,6 +31,7 @@ function outputProxyConfig(reporterUrl) {
 module.exports = {
   '/screenshots': {
     target: '${targetUrl}',
+    changeOrigin: true,
   },
 };
   `.trim();
