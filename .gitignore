@@ -8,6 +8,7 @@ build/
 dist/
 docs_dist/
 debug.html
+debug.proxy.js
 *.sw*
 *.un~
 .idea
