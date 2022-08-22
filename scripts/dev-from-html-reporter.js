@@ -14,7 +14,7 @@ function updateTemplateHtml(configStr, dataStr) {
   node.setAttribute('data-output', dataStr);
   const res = dom.serialize();
   fs.writeFileSync('./debug.html', res, 'utf-8');
-  console.log('open: %s', 'http://localhost:8080/debug.html');
+  console.log('\nopen: %s\n', 'http://localhost:8080/debug.html');
 }
 
 async function main() {
