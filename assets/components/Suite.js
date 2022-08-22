@@ -4,7 +4,6 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import {
   xcode,
 } from 'react-syntax-highlighter/dist/styles';
-import remove from 'lodash/remove';
 import { Table } from 'antd';
 import {
   CheckOutlined,
@@ -87,17 +86,6 @@ export default class Suite extends React.Component {
     return suites;
   }
 
-  _deleteNullTest(suites) {
-    remove(suites, suite => {
-      // willDelete
-      return suite.children && !suite.children.length && !suite.suites.length;
-    });
-    suites.forEach(suite => {
-      this._deleteNullTest(suite.suites);
-    });
-    return suites;
-  }
-
   componentDidMount() {
     this.maxD3Height = 1;
     let suites;
@@ -108,14 +96,12 @@ export default class Suite extends React.Component {
         text: autoWrapText(suite.title) || '',
       },
     };
-
     if (suite.tests.length) {
       suites = this._transformOneTree(suite);
       d3Data.children = suites.children;
     } else {
       suites = this._transformTree(suite.suites);
       d3Data.children = suites;
-      suites = this._deleteNullTest(suites);
     }
 
     const selector = `.d3-tree-${this.uid}`;

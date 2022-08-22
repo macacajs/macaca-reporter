@@ -27,24 +27,10 @@ export default class Mind extends React.Component {
     return suites;
   }
 
-  _deleteNullTest(suites) {
-    remove(suites, suite => {
-      const willDelete = suite.children
-        && !suite.children.length
-        && !suite.suites.length;
-      return willDelete;
-    });
-    suites.forEach(suite => {
-      this._deleteNullTest(suite.suites);
-    });
-    return suites;
-  }
-
   componentDidMount() {
     const { title } = this.props;
     let { suites } = this.props;
     suites = this._transformTree(suites);
-    suites = this._deleteNullTest(suites);
 
     const adaptor = (listData, isRoot) => {
       const midNum = parseInt(listData.length / 2, 10);

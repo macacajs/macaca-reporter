@@ -193,9 +193,6 @@ class App extends React.Component {
 
   // 图片、录像视图
   renderImages(allTest) {
-    if (this.state.showType !== 'image') {
-      return null;
-    }
     const mediasList = this.handleImageList(allTest);
     let cards = mediasList.map((item, index) => {
       const title = item.text;
@@ -274,13 +271,63 @@ class App extends React.Component {
     return tests;
   }
 
+  deleteNullTest = (suites = []) => {
+    suites = suites.filter(s => {
+      if (s.suites.length > 0) {
+        return s.suites.find(ss => {
+          return ss.tests.length > 0;
+        });
+      } else {
+        return s.tests.length > 0;
+      }
+    });
+    suites.forEach(suite => {
+      this.deleteNullTest(suite.suites);
+    });
+    return suites;
+  }
+
+  renderSuites() {
+    const { showType } = this.state;
+    const stats = this.state?.output?.stats;
+    const originSuites = this.state?.output?.suites;
+    const suites = this.deleteNullTest(originSuites.suites);
+    if (showType === 'mind') {
+      return <Mind suites={suites} title={stats.title} />;
+    } else if (showType === 'image') {
+      // 获取 images
+      const allTest = this.getAllTests(originSuites.suites);
+      return this.renderImages(allTest);
+    } else if (Array.isArray(suites)) {
+      return suites.map((suite, index) => {
+        return (
+          <Suite
+            showSuite
+            showSvg={showType !== 'text' && showType !== 'error'}
+            showError={showType === 'error'}
+            suite={suite}
+            key={index}
+          />
+        );
+      });
+    }
+    return null;
+  }
+
+  renderFooter() {
+    const { showType } = this.state;
+    if (showType === 'mind') return null;
+    return (
+      <Footer>
+        &copy;&nbsp;<a href={pkg.homepage}>Macaca Team</a> { new Date().getFullYear() }
+      </Footer>
+    );
+  }
+
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
-    const originSuites = this.state?.output?.suites;
     const { showType } = this.state;
-    // 获取 images
-    const allTest = this.getAllTests(originSuites.suites);
     return (
       <Layout>
         <Affix>
@@ -313,29 +360,9 @@ class App extends React.Component {
             </div>
           </div>
           <Screen current={current} />
-          { showType === 'mind' && <Mind suites={originSuites.suites} title={stats.title} /> }
-          {
-            showType !== 'mind' && originSuites.suites && originSuites.suites.map((suite, index) => {
-              return (
-                <Suite
-                  showSuite={showType !== 'image'}
-                  showSvg={showType !== 'text' && showType !== 'error'}
-                  showError={showType === 'error'}
-                  suite={suite}
-                  key={index}
-                />
-              );
-            })
-          }
-          { this.renderImages(allTest) }
+          { this.renderSuites() }
         </Content>
-        {
-          showType !== 'mind' && (
-            <Footer>
-              &copy;&nbsp;<a href={pkg.homepage}>Macaca Team</a> { new Date().getFullYear() }
-            </Footer>
-          )
-        }
+        { this.renderFooter() }
         <BackTop />
       </Layout>
     );
