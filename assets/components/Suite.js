@@ -4,6 +4,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import {
   xcode,
 } from 'react-syntax-highlighter/dist/styles';
+import classnames from 'classnames';
 import { Table } from 'antd';
 import {
   CheckOutlined,
@@ -327,7 +328,10 @@ export default class Suite extends React.Component {
           </ul>
         </div>
 
-        <div style={{ display: showSvg ? 'block' : 'none' }} className={`ani-box d3-tree-${this.uid}`}></div>
+        <div
+          style={{ display: showSvg ? 'block' : 'none' }}
+          className={classnames('ani-box', `d3-tree-${this.uid}`)}
+        />
         <Table
           pagination={!this.props.showSvg}
           columns={columns}
