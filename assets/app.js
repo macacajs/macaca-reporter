@@ -274,10 +274,27 @@ class App extends React.Component {
     return tests;
   }
 
+  deleteNullTest = (suites = []) => {
+    suites = suites.filter(s => {
+      if (s.suites.length > 0) {
+        return s.suites.find(ss => {
+          return ss.tests.length > 0;
+        });
+      } else {
+        return s.tests.length > 0;
+      }
+    });
+    suites.forEach(suite => {
+      this.deleteNullTest(suite.suites);
+    });
+    return suites;
+  }
+
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
     const originSuites = this.state?.output?.suites;
+    const suites = this.deleteNullTest(originSuites.suites);
     const { showType } = this.state;
     // 获取 images
     const allTest = this.getAllTests(originSuites.suites);
@@ -313,9 +330,10 @@ class App extends React.Component {
             </div>
           </div>
           <Screen current={current} />
-          { showType === 'mind' && <Mind suites={originSuites.suites} title={stats.title} /> }
+          { showType === 'mind' && <Mind suites={suites} title={stats.title} /> }
           {
-            showType !== 'mind' && originSuites.suites && originSuites.suites.map((suite, index) => {
+            showType !== 'mind'
+            && suites.map((suite, index) => {
               return (
                 <Suite
                   showSuite={showType !== 'image'}
