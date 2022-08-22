@@ -135,5 +135,10 @@ module.exports = {
     static: {
       directory: __dirname,
     },
+    proxy: {
+      '/screenshots': {
+        target: '',
+      },
+    },
   },
 };

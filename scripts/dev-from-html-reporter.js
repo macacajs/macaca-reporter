@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const chalk = require('chalk');
 const jsdom = require('jsdom');
 const urllib = require('urllib');
 
@@ -15,6 +16,23 @@ function updateTemplateHtml(configStr, dataStr) {
   const res = dom.serialize();
   fs.writeFileSync('./debug.html', res, 'utf-8');
   console.log('\nopen: %s\n', 'http://localhost:8080/debug.html');
+}
+
+function outputProxyConfig(reporterUrl) {
+  const urlObj = new URL(reporterUrl);
+  urlObj.query = '';
+  urlObj.hash = '';
+  urlObj.search = '';
+  urlObj.pathname = urlObj.pathname.replace('/index.html', '');
+  const targetUrl = urlObj.toString();
+  const tpl = `
+proxy: {
+  '/screenshots': {
+    target: '${targetUrl}',
+  },
+},
+  `.trim();
+  console.log('proxy config: \n\n%s\n', chalk.cyan(tpl));
 }
 
 async function main() {
@@ -32,6 +50,7 @@ async function main() {
     const configStr = node.getAttribute('config-output');
     const dataStr = node.getAttribute('data-output');
     updateTemplateHtml(configStr, dataStr);
+    outputProxyConfig(reporterUrl);
   } else {
     throw new Error(`request error: ${status}`);
   }
