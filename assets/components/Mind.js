@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Editor from '@antv/g6-editor';
 import { guid } from '@/common/helper';
+import styles from './Mind.module.less';
 
 function _transformTree(suites = []) {
   suites.forEach((suite) => {
@@ -57,6 +58,6 @@ export default function Mind(props) {
   }, []);
 
   return (
-    <div id="mind-node" className="mind-node"></div>
+    <div id="mind-node" className={styles.wrapper} />
   );
 }
