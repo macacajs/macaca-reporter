@@ -26,13 +26,16 @@ function outputProxyConfig(reporterUrl) {
   urlObj.pathname = urlObj.pathname.replace('/index.html', '');
   const targetUrl = urlObj.toString();
   const tpl = `
-proxy: {
+'use strict';
+
+module.exports = {
   '/screenshots': {
     target: '${targetUrl}',
   },
-},
+};
   `.trim();
-  console.log('proxy config: \n\n%s\n', chalk.cyan(tpl));
+  fs.writeFileSync('./debug.proxy.js', tpl, 'utf-8');
+  console.log('proxy config: \n\n%s\nwirte file to debug.proxy.js', chalk.cyan(tpl));
 }
 
 async function main() {

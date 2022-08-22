@@ -8,6 +8,15 @@ const traceFragment = require('macaca-ecosystem/lib/trace-fragment');
 const pkg = require('./package');
 const assetsPath = path.join(__dirname, 'assets');
 
+function getDevServerProxy() {
+  try {
+    return require('./debug.proxy');
+  } catch (e) {
+    console.log(e);
+    return {};
+  }
+}
+
 module.exports = {
 
   entry: {
@@ -135,10 +144,6 @@ module.exports = {
     static: {
       directory: __dirname,
     },
-    proxy: {
-      '/screenshots': {
-        target: '',
-      },
-    },
+    proxy: getDevServerProxy(),
   },
 };
