@@ -24,8 +24,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: |
-          npm i macaca-ecosystem vuepress webpack -D
+        run: npm i macaca-ecosystem vuepress webpack@^4.0.0 -D --force
 
       - name: Build docs
         run: npm run docs:build
