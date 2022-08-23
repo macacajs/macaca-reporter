@@ -10,7 +10,7 @@ on:
 jobs:
   docs-build:
     timeout-minutes: 10
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Git Source
@@ -24,7 +24,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm i macaca-ecosystem vuepress webpack@^4.0.0 -D --force
+        run: npm i --force
 
       - name: Build docs
         run: npm run docs:build
