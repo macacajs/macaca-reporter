@@ -5,7 +5,7 @@ on:
   
   push:
     branches:
-      - chore/update-ci-config
+      - '**'
 
 jobs:
   docs-build:
