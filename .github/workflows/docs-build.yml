@@ -24,7 +24,9 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm i --force
+        run: |
+          npm i --force
+          npm i webpack@4 -D --force
 
       - name: Build docs
         run: npm run docs:build
