@@ -10,7 +10,7 @@ on:
 jobs:
   docs-build:
     timeout-minutes: 10
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout Git Source
@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm i npm@6 -g
-          npm i macaca-ecosystem vuepress -D
+          npm i macaca-ecosystem vuepress webpack -D
 
       - name: Build docs
         run: npm run docs:build
