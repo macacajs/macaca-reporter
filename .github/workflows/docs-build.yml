@@ -25,7 +25,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm i npm@6 -g
           npm i macaca-ecosystem vuepress webpack -D
 
       - name: Build docs
