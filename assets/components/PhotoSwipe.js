@@ -57,12 +57,12 @@ export const openPhotoSwipe = (items, index) => {
     pswpElement = document.querySelector('.pswp');
   }
   const options = {
-    bgOpacity: 0.2,
+    bgOpacity: 0.6,
     index,
     history: false,
-    focus: false,
+    focus: true,
     shareEl: false,
-    fullscreenEl: false,
+    fullscreenEl: true,
     closeOnScroll: false,
     clickToCloseNonZoomable: false,
     tapToClose: true,

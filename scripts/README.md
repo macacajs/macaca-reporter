@@ -3,5 +3,5 @@
 ---
 
 ```bash
-node ./scripts/dev-from-html-reporter.js path/to/html
+npm run gen path/to/html
 ```

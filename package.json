@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.8.10",
+  "version": "1.8.11",
   "description": "Reporter for mocha and other frameworks.",
   "keywords": [
     "macaca",
@@ -98,6 +98,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve",
     "dev:e2e": "NODE_ENV=test npm run dev",
+    "gen": "node ./scripts/dev-from-html-reporter.js",
     "build": "cross-env NODE_ENV=production webpack",
     "eslint": "eslint . --ext js,jsx --fix",
     "stylelint": "stylelint --fix assets/**/*.less -s less",
