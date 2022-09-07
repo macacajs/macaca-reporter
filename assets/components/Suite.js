@@ -187,14 +187,18 @@ export default class Suite extends React.Component {
           {record.code}
         </SyntaxHighlighter>
         {this.getErrorInfo(record)}
-        <div style={{ display: 'block' }}>
+        <div>
           {this.getImages(record).map((src, index) => {
             if (validVideo(src)) {
               return (
                 <video
                   key={index}
                   data-title={record.fullTitle}
-                  style={{ height: '600px', width: 'auto' }}
+                  style={{
+                    height: '600px',
+                    width: 'auto',
+                    display: 'block',
+                  }}
                   src={src}
                   preload="none"
                   controls
@@ -205,7 +209,11 @@ export default class Suite extends React.Component {
                 <img
                   key={index}
                   data-title={record.fullTitle}
-                  style={{ height: '600px', width: 'auto' }}
+                  style={{
+                    height: '600px',
+                    width: 'auto',
+                    display: 'block',
+                  }}
                   src={src}
                   alt={record.fullTitle}
                 />
