@@ -5,7 +5,7 @@ import {
   xcode,
 } from 'react-syntax-highlighter/dist/styles';
 import classnames from 'classnames';
-import { Table } from 'antd';
+import { Table, Col, Row, Card } from 'antd';
 import {
   CheckOutlined,
   CloseOutlined,
@@ -187,40 +187,40 @@ export default class Suite extends React.Component {
           {record.code}
         </SyntaxHighlighter>
         {this.getErrorInfo(record)}
-        <div>
+        <Row>
           {this.getImages(record).map((src, index) => {
-            if (validVideo(src)) {
-              return (
-                <video
-                  key={index}
-                  data-title={record.fullTitle}
-                  style={{
-                    height: '600px',
-                    width: 'auto',
-                    display: 'block',
-                  }}
-                  src={src}
-                  preload="none"
-                  controls
+            const isVideo = validVideo(src);
+            return (
+              <Col key={guid()} span={4} style={{ padding: '5px' }}>
+                <Card
+                  id="display-items"
+                  hoverable
+                  cover={
+                    isVideo
+                      ? (
+                        <a href={src} target="_blank">
+                          <video
+                            data-index={index}
+                            className="video-item display-item"
+                            src={src}
+                            preload="none"
+                            controls
+                          />
+                        </a>
+                      )
+                      : (
+                        <img
+                          data-index={index}
+                          className="picture-item display-item"
+                          src={src}
+                        />
+                      )
+                  }
                 />
-              );
-            } else {
-              return (
-                <img
-                  key={index}
-                  data-title={record.fullTitle}
-                  style={{
-                    height: '600px',
-                    width: 'auto',
-                    display: 'block',
-                  }}
-                  src={src}
-                  alt={record.fullTitle}
-                />
-              );
-            }
+              </Col>
+            );
           })}
-        </div>
+        </Row>
       </div>
     );
   }
