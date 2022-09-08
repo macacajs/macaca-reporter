@@ -16,71 +16,70 @@ export const startsVideoPreload = () => {
   });
 };
 
+function buildImgItemData(item, src, title) {
+  const zoom = 0.6;
+  const { width: imageWidth, height: imageHeight } = item.getBoundingClientRect();
+  const ratio = (imageWidth / imageHeight).toFixed(2);
+  const { width: screenWidth, height: screenHeight } = window.screen;
+  let pos = {};
+  // horizontal
+  if (ratio > 1) {
+    pos = {
+      w: screenWidth * zoom,
+      h: screenWidth * zoom / ratio,
+    };
+  } else {
+    pos = {
+      w: screenHeight * zoom * ratio,
+      h: screenHeight * zoom,
+    };
+  }
+  return {
+    src,
+    title,
+    ...pos,
+  };
+}
+
 export const addImageEvent = () => {
   document.body.addEventListener('click', e => {
     const { target } = e;
     const tagName = target.tagName.toUpperCase();
 
-    const zoom = 0.6;
     if (tagName === 'IMAGE') {
       let index = 0;
       const items = [];
       document.querySelectorAll('image').forEach((item, key) => {
-        const { width: imageWidth, height: imageHeight } = item.getBoundingClientRect();
-        const ratio = (imageWidth / imageHeight).toFixed(2);
-        const { width: screenWidth, height: screenHeight } = window.screen;
         if (item === target) {
           index = key;
         }
-        let pos = {};
-        // horizontal
-        if (ratio > 1) {
-          pos = {
-            w: screenWidth * zoom,
-            h: screenWidth * zoom / ratio,
-          };
-        } else {
-          pos = {
-            w: screenHeight * zoom * ratio,
-            h: screenHeight * zoom,
-          };
-        }
-        const href = item.getAttribute('href');
+        const src = item.getAttribute('href');
         const titleContainer = item.parentNode.querySelector('text');
         const textArray = [].slice.call(titleContainer && titleContainer.querySelectorAll('tspan') || []);
         const title = textArray.reduce((pre, current) => { return pre + current.innerHTML; }, '');
-        items.push({ src: href,
-          title,
-          ...pos });
+        items.push(buildImgItemData(item, src, title));
       });
       openPhotoSwipe(items, index);
-    } else if (tagName === 'IMG' && target.classList.contains('picture-item')) {
-      const index = parseInt(target.getAttribute('data-index'), 10);
-      const items = [];
-      document.querySelectorAll('#display-items .display-item').forEach(item => {
+    } else if (tagName === 'IMG') {
+      if (target.classList.contains('picture-item')) {
+        const index = parseInt(target.getAttribute('data-index'), 10);
+        const items = [];
+        document.querySelectorAll('#display-items .display-item').forEach(item => {
+          const src = item.getAttribute('src');
+          const title = item.getAttribute('data-title');
+          items.push(buildImgItemData(item, src, title));
+        });
+        openPhotoSwipe(items, index);
+      } else if (target.classList.contains('picture-item-single')) {
+        const index = parseInt(target.getAttribute('data-index'), 10);
+        const item = target;
         const src = item.getAttribute('src');
         const title = item.getAttribute('data-title');
-        const { width: imageWidth, height: imageHeight } = item.getBoundingClientRect();
-        const ratio = (imageWidth / imageHeight).toFixed(2);
-        const { width: screenWidth, height: screenHeight } = window.screen;
-        let pos = {};
-        // horizontal
-        if (ratio > 1) {
-          pos = {
-            w: screenWidth * zoom,
-            h: screenWidth * zoom / ratio,
-          };
-        } else {
-          pos = {
-            w: screenHeight * zoom * ratio,
-            h: screenHeight * zoom,
-          };
-        }
-        items.push({ src,
-          title,
-          ...pos });
-      });
-      openPhotoSwipe(items, index);
+        const items = [
+          buildImgItemData(item, src, title),
+        ];
+        openPhotoSwipe(items, index);
+      }
     }
   }, false);
 };

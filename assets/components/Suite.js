@@ -211,7 +211,7 @@ export default class Suite extends React.Component {
                       : (
                         <img
                           data-index={index}
-                          className="picture-item display-item"
+                          className="picture-item-single display-item"
                           src={src}
                         />
                       )
