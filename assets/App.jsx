@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 import ReactDom from 'react-dom';
+import CircularJson from 'macaca-circular-json';
 import {
   Affix,
   Card,
@@ -55,7 +56,7 @@ class App extends React.Component {
     super(props);
     container = document.querySelector(`#${pkg.name}`);
 
-    const output = JSON.parse(decodeURI(container.getAttribute(dataAttr)));
+    const output = CircularJson.parse(decodeURI(container.getAttribute(dataAttr)));
 
     let showType = 'tree';
     const hashMode = location.hash.replace('#mode=', '');
@@ -328,12 +329,12 @@ window._macaca_reportor = {
 container = document.querySelector(`#${pkg.name}`);
 
 if (container.getAttribute(configAttr)) {
-  const config = JSON.parse(decodeURI(container.getAttribute(configAttr)));
+  const config = CircularJson.parse(decodeURI(container.getAttribute(configAttr)));
 
   if (config && config.socket) {
     const socket = io(config.socket.server);
     socket.on('update reporter', (data) => {
-      window._macaca_reportor._update(encodeURI(JSON.stringify(data)));
+      window._macaca_reportor._update(encodeURI(CircularJson.stringify(data)));
     });
 
     socket.on('disconnect', (data) => {
