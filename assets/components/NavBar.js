@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Progress,
 } from 'antd';
+import { formatSeconds } from '@/common/helper';
 import './NavBar.less';
 import Icon from './Icon';
 import pkg from '../../package.json';
@@ -50,7 +51,7 @@ export default function NavBar(props) {
       </li>
       <li>
         <h5>duration</h5>
-        <p>{ (stats.duration / 1000).toFixed(2) }s</p>
+        <p>{ formatSeconds(stats.duration) }</p>
       </li>
       <li>
         <div className="head-circle">
