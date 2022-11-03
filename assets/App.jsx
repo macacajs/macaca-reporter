@@ -246,7 +246,10 @@ class App extends React.Component {
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
-    const extraData = this.state?.output?.extraData || {};
+    const extraData = {
+      pkgVersion: pkg.version,
+      ...this.state?.output?.extraData,
+    };
     const { showType } = this.state;
     return (
       <Layout>
@@ -262,11 +265,12 @@ class App extends React.Component {
               placement="bottom"
               content={(
                 <div>
-                  <span>version: {pkg.version}<br /></span>
                   {
-                    Object.keys(extraData).map(k => {
+                    Object.keys(extraData).map(key => {
                       return (
-                        <span key={k}>{k}: {extraData[k]}<br /></span>
+                        <div key={`extra-data-${key}`}>
+                          {key}: {extraData[key]}
+                        </div>
                       );
                     })
                   }
