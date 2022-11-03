@@ -14,7 +14,7 @@ export default function NavBar(props) {
     <ul className="head">
       <li>
         <a href={pkg.homepage}>
-          <div title={`version: ${pkg.version}`} className={styles.info}>
+          <div className={styles.info}>
             <Icon
               width={60}
               type="monkey"

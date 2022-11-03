@@ -11,6 +11,7 @@ import {
   Radio,
   Empty,
   BackTop,
+  Popover,
 } from 'antd';
 import {
   EyeOutlined,
@@ -18,6 +19,7 @@ import {
   VideoCameraOutlined,
   TableOutlined,
   QuestionCircleOutlined,
+  InfoCircleOutlined,
 } from '@ant-design/icons';
 import uniqBy from 'lodash/uniqBy';
 import flatten from 'lodash/flatten';
@@ -30,6 +32,7 @@ import NavBar from './components/NavBar';
 import Screen from './components/Screen';
 import pkg from '../package.json';
 import './app.less';
+import styles from './app.module.less';
 
 const { Header } = Layout;
 const { Footer } = Layout;
@@ -253,6 +256,19 @@ class App extends React.Component {
         </Affix>
         <Content>
           <div className="panel-container">
+            <Popover
+              title={null}
+              placement="bottom"
+              content={(
+                <div>
+                  version: {pkg.version}
+                </div>
+              )}
+            >
+              <div className={styles.extraInfoWrapper}>
+                <InfoCircleOutlined />
+              </div>
+            </Popover>
             <div className="case-show-panel">
               <Radio.Group className="case-show-radio" value={showType} onChange={this.handleRadioChange.bind(this)}>
                 <Radio.Button value="tree">
