@@ -246,7 +246,7 @@ class App extends React.Component {
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
-    const envInfo = this.state?.output?.envInfo || {};
+    const extraData = this.state?.output?.extraData || {};
     const { showType } = this.state;
     return (
       <Layout>
@@ -264,9 +264,9 @@ class App extends React.Component {
                 <div>
                   <span>version: {pkg.version}<br /></span>
                   {
-                    Object.keys(envInfo).map(envKey => {
+                    Object.keys(extraData).map(k => {
                       return (
-                        <span key={envKey}>{envKey}: {envInfo[envKey]}<br /></span>
+                        <span key={k}>{k}: {extraData[k]}<br /></span>
                       );
                     })
                   }
