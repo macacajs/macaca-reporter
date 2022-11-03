@@ -265,9 +265,9 @@ class App extends React.Component {
                   <span>version: {pkg.version}<br /></span>
                   {
                     Object.keys(envInfo).map(envKey => {
-                        return (
+                      return (
                         <span key={envKey}>{envKey}: {envInfo[envKey]}<br /></span>
-                        );
+                      );
                     })
                   }
                 </div>
