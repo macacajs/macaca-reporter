@@ -246,6 +246,7 @@ class App extends React.Component {
   render() {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
+    const envInfo = this.state?.output?.envInfo || {};
     const { showType } = this.state;
     return (
       <Layout>
@@ -261,7 +262,14 @@ class App extends React.Component {
               placement="bottom"
               content={(
                 <div>
-                  version: {pkg.version}
+                  <span>version: {pkg.version}<br /></span>
+                  {
+                    Object.keys(envInfo).map(envKey => {
+                        return (
+                        <span key={envKey}>{envKey}: {envInfo[envKey]}<br /></span>
+                        );
+                    })
+                  }
                 </div>
               )}
             >
