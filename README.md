@@ -40,7 +40,7 @@
 | :---: | :---: | :---: | :---: | :---: | :---: |
 [<img src="https://avatars.githubusercontent.com/u/8198256?v=4" width="100px;"/><br/><sub><b>SamuelZhaoY</b></sub>](https://github.com/SamuelZhaoY)<br/>|[<img src="https://avatars.githubusercontent.com/u/30293087?v=4" width="100px;"/><br/><sub><b>Jodeee</b></sub>](https://github.com/Jodeee)<br/>|[<img src="https://avatars.githubusercontent.com/u/24653016?v=4" width="100px;"/><br/><sub><b>amosnothing</b></sub>](https://github.com/amosnothing)<br/>|[<img src="https://avatars.githubusercontent.com/u/100205797?v=4" width="100px;"/><br/><sub><b>barry3406</b></sub>](https://github.com/barry3406)<br/>|[<img src="https://avatars.githubusercontent.com/u/15245618?v=4" width="100px;"/><br/><sub><b>lsh382510118</b></sub>](https://github.com/lsh382510118)<br/>
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed Sep 28 2022 16:21:18 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Nov 05 2022 23:35:39 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 
