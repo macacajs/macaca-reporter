@@ -247,7 +247,7 @@ class App extends React.Component {
     const stats = this.state?.output?.stats;
     const current = this.state?.output?.current;
     const extraData = {
-      pkgVersion: pkg.version,
+      reporter_version: pkg.version,
       ...this.state?.output?.extraData,
     };
     const { showType } = this.state;
