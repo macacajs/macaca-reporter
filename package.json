@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.9.11",
+  "version": "1.9.13",
   "description": "Reporter for mocha and other frameworks.",
   "keywords": [
     "macaca",
@@ -29,7 +29,7 @@
     "macaca-circular-json": "*",
     "macaca-coverage": "1",
     "macaca-utils": "^1.0.0",
-    "microtemplate": "^1.0.2",
+    "microtemplate2": "2",
     "mocha": "^5.2.0",
     "remap-istanbul": "^0.11.0",
     "xlogger": "^1.0.6"
