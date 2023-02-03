@@ -1,6 +1,6 @@
 {
   "name": "macaca-reporter",
-  "version": "1.9.13",
+  "version": "1.9.15",
   "description": "Reporter for mocha and other frameworks.",
   "keywords": [
     "macaca",
@@ -27,12 +27,14 @@
     "commander": "^9.3.0",
     "is-ci": "^2.0.0",
     "macaca-circular-json": "*",
-    "macaca-coverage": "1",
     "macaca-utils": "^1.0.0",
     "microtemplate2": "2",
     "mocha": "^5.2.0",
     "remap-istanbul": "^0.11.0",
     "xlogger": "^1.0.6"
+  },
+  "optionalDependencies": {
+    "macaca-coverage": "1"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
